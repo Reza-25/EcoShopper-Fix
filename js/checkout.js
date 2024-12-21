@@ -21,14 +21,3 @@ document.addEventListener('DOMContentLoaded', function() {
       }
   });
 });
-
-
-
-document.addEventListener('DOMContentLoaded', function() {
-    const filterIcon = document.getElementById('filter-icon');
-    const checkoutBox = document.getElementById('checkout-box');
-
-    filterIcon.addEventListener('click', function() {
-        checkoutBox.classList.toggle('active');
-    });
-});

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="desaincss/checkout.css">
+    <link rel="stylesheet" href="desaincss/style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;900&display=swap">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <title>Checkout</title>
@@ -16,15 +17,16 @@
         <div class="bx bx-menu" id="menu-icon"></div>
         <!--nav list-->
         <ul class="navbar">
-            <li><a href="home.html">Home</a></li>
-            <li><a href="home.html">Kategori</a></li>
-            <li><a href="#products" class="home-active">Produk</a></li>
-            <li><a href="home.html">Tentang Kami</a></li>
-            <li><a href="home.html">Customer</a></li>
+            <li><a href="#home" class="home-active">Home</a></li>
+            <li><a href="home.html#categories">Kategori</a></li>
+            <li><a href="#products">Produk</a></li>
+            <li><a href="home.html#about">Tentang Kami</a></li>
+            <li><a href="home.html#customer">Customer</a></li>
         </ul>
+
         <!--cart-->
         <div class="cart">
-            <i class='bx bx-cart'><span class="count">0</span></i>
+            <a href="cart.html"><i class='bx bx-cart'><span class="count">0</span></i></a>
         </div>
 
         <!--profil-->
@@ -32,6 +34,10 @@
             <img src="img/profile.jpg" alt="">
             <span>Jon Robert</span>
             <i class='bx bx-caret-down'></i>
+            <div class="profile-dropdown" id="profile-dropdown">
+                <a href="signin.html">Sign In</a>
+                <a href="logout.html">Log Out</a>
+            </div>
         </div>
     </header>
 
@@ -108,6 +114,6 @@
         </section>
     </div>
 
-    <script src="js/main.js"></script>
+    <script src="/js/checkout.js"></script>
 </body>
 </html>
