@@ -121,6 +121,13 @@
 /*checkout page*/
 /* Checkout Section */
 
+.filter-icon  .bx{
+    position: relative;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 100;
+}
+
 .checkout {
     position: fixed; /* Menetapkan posisi tetap */
     top: 100px; /* Jarak dari atas */
@@ -130,7 +137,11 @@
     box-shadow: 1px 2px 11px 4px rgba(14, 55, 54, 0.15);
     border-radius: 0.5rem;
     background: var(--bg--color);
-    z-index: 1000; /* Pastikan elemen berada di atas elemen lain */
+    z-index: 1; /* Pastikan elemen berada di atas elemen lain */
+}
+
+.checkout.active {
+    display: block;
 }
 
 .checkout h2 {

@@ -444,6 +444,7 @@ header .cart:hover{
     color: var(--bg--color);
     font-size: 20px;
     border-radius: 0.5rem 0 0.5rem 0;
+    cursor: pointer;
 }
 
 .products-container .box .bx-cart-alt:hover{
