@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoShopper</title>
+    <link rel="stylesheet" href="desaincss/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <!-- Link Swiper's CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+</head>
+<body>
+    <!--navbar-->
+    <header>
+        <a href="#" class="logo"><i class='bx bxs-basket'></i>Eco shopper</a>
+        <!--menu icon-->
+        <div class="bx bx-menu" id="menu-icon"></div>
+        <!--nav list-->
+        <ul class="navbar">
+            <li><a href="#home" class="home-active">Home</a></li>
+            <li><a href="home.html#categories">Kategori</a></li>
+            <li><a href="#products">Produk</a></li>
+            <li><a href="home.html#about">Tentang Kami</a></li>
+            <li><a href="home.html#customer">Customer</a></li>
+        </ul>
+
+        <!--cart-->
+        <div class="cart">
+            <a href="cart.html"><i class='bx bx-cart'><span class="count">0</span></i></a>
+        </div>
+
+        <!--profil-->
+        <div class="profile">
+            <img src="img/profile.jpg" alt="">
+            <span>Jon Robert</span>
+            <i class='bx bx-caret-down'></i>
+            <div class="profile-dropdown" id="profile-dropdown">
+                <a href="signin.html">Sign In</a>
+                <a href="logout.html">Log Out</a>
+            </div>
+        </div>
+    </header>
+
+    <!--home-->
+    <section class="home swiper" id="home">
+        <div class="swiper-wrapper">
+            <!-- Slide1 -->
+            <div class="swiper-slide container">
+                <div class="home-text">
+                    <span>Fashion</span>
+                    <h1>varian baru<br>dengan diskon gede<br></h1>
+                    <a href="#" class="btn">Belanja<i class='bx bxs-right-arrow-alt' ></i></a>
+                </div>
+                <img class="shirt" src="product/black-9-removebg-preview.png" alt="">
+            
+            </div>
+            <!--slide2-->
+            <div class="swiper-slide container">
+                <div class="home-text">
+                    <span>Electronic</span>
+                    <h1>Headphone baru<br> dengan warna <br>baru</h1>
+                    <a href="#" class="btn">Belanja<i class='bx bxs-right-arrow-alt' ></i></a>
+                </div>
+                <img id="headphone-image" src="product/headphone-9.png" alt="">
+            
+            </div>
+            <!--slide3-->
+            <div class="swiper-slide container">
+                <div class="home-text">
+                    <span>Accessoris</span>
+                    <h1>Tas Mewah<br> Kini dengan <br>desain baru</h1>
+                    <a href="#" class="btn">Belanja<i class='bx bxs-right-arrow-alt' ></i></a>
+                </div>
+                <img id="tas-coklat" src="product/brown-5.png" alt="">
+            
+            </div>
+        
+        </div>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+
+    </section>
+    <!--category-->
+    <section class="categories" id="categories">
+        <div class="heading">
+            <h1>Jelajahi Produk Kami<br><span>Kategori</span></h1>
+            <a href="/product-fashion.html" class="btn">Belanja<i class='bx bxs-right-arrow-alt' ></i></a>
+        </div>
+        <!--container content-->
+        <div class="categories-container">
+            <!--box-->
+            <div class="box box1">
+                <img src="img2/dark-blue-2-removebg-preview.png" alt="">
+                <h2>Fashion</h2>
+                <span>22 items</span>
+                <a href="product-fashion.html"><i class='bx bxs-right-arrow-alt' ></i></a>
+
+            </div>
+             <!--box2-->
+             <div class="box box2">
+                <img src="img2/light-green-5-removebg-preview.png" alt="">
+                <h2>Acessories</h2>
+                <span>22 items</span>
+                <a href="product-aksesoris.html"><i class='bx bxs-right-arrow-alt' ></i></a>
+
+            </div>
+             <!--box3-->
+             <div class="box box3">
+                <img src="img2/furniture_cate1-removebg-preview.png" alt="">
+                <h2>Furniture</h2>
+                <span>5 items</span>
+                <a href="product-furniture.html"><i class='bx bxs-right-arrow-alt' ></i></a>
+
+            </div>
+             <!--box4-->
+             <div class="box box4">
+                <img src="img2/—Pngtree—mock up cosmetic products for_15619191.png" alt="">
+                <h2>Skin care</h2>
+                <span>50 items</span>
+                <a href="product-skincare.html"><i class='bx bxs-right-arrow-alt' ></i></a>
+            </div>
+            <!--box5-->
+            <div class="box box5">
+                <img src="img2/black-16.png" alt="">
+                <h2>Electronic</h2>
+                <span>50 items</span>
+                <a href="product.electronic.html"><i class='bx bxs-right-arrow-alt' ></i></a>
+            </div>
+        </div>
+    </section>
+    <!--product-->
+    <section class="products" id="products">
+        <div class="heading">
+            <h1>Our Popular <br><span>Products</span></h1>
+            <a href="/product-fashion.html" class="btn">Belanja<i class='bx bxs-right-arrow-alt' ></i></a>
+        </div>
+
+        <!--product content-->
+        <div class="products-container">
+            <div class="box">
+                <a href="product-detail.html"></a>
+                <img src="product/black-9-removebg-preview.png" alt="">
+                <span>fresh item</span>
+                <h2>Black Sweater<br>Stock: 20</h2>
+                <h3 class="price">Rp 200.000</h3>
+                <i class='bx bx-cart-alt'></i>
+                <i class='bx bx-heart' ></i>
+                <div class='progress-bar' role='progressbar' aria-valuenow='75' aria-valuemin='0' aria-valuemax='100'></div>
+                <span class="category">Recycle</span>
+                <span class="discount">70%</span>
+            </div>
+            <!--product2-->
+            <div class="box">
+                <img src="product/sneaker-4.png" alt="">
+                <span>fresh item</span>
+                <h2>Black Jacket<br>Stock: 20</h2>
+                <h3 class="price">Rp 200.000</h3>
+                <i class='bx bx-cart-alt'></i>
+                <i class='bx bx-heart' ></i>
+                <div class='progress-bar' role='progressbar' aria-valuenow='75' aria-valuemin='0' aria-valuemax='100'></div>
+                <span class="category">Recycle</span>
+                <span class="discount">70%</span>
+            </div>
+            <!--product3-->
+            <div class="box">
+                <img src="product/headphone-9.png" alt="">
+                <span>fresh item</span>
+                <h2>Black Jacket<br>Stock: 20</h2>
+                <h3 class="price">Rp 200.000</h3>
+                <i class='bx bx-cart-alt'></i>
+                <i class='bx bx-heart' ></i>
+                <div class='progress-bar' role='progressbar' aria-valuenow='75' aria-valuemin='0' aria-valuemax='100'></div>
+                <span class="category">Recycle</span>
+                <span class="discount">70%</span>
+            </div>
+            <!--product4-->
+            <div class="box">
+                <img src="product/skincare-8-removebg-preview.png" alt="">
+                <span>fresh item</span>
+                <h2>Black Jacket<br>Stock: 20</h2>
+                <h3 class="price">Rp 200.000</h3>
+                <i class='bx bx-cart-alt'></i>
+                <i class='bx bx-heart' ></i>
+                <div class='progress-bar' role='progressbar' aria-valuenow='75' aria-valuemin='0' aria-valuemax='100'></div>
+                <span class="category">Recycle</span>
+                <span class="discount">70%</span>
+            </div>
+            <!--product5-->
+            <div class="box">
+                <img src="product/black-8-removebg-preview.png" alt="">
+                <span>fresh item</span>
+                <h2>Black Jacket<br>Stock: 20</h2>
+                <h3 class="price">Rp 200.000</h3>
+                <i class='bx bx-cart-alt'></i>
+                <i class='bx bx-heart' ></i>
+                <div class='progress-bar' role='progressbar' aria-valuenow='75' aria-valuemin='0' aria-valuemax='100'></div>
+                <span class="category">Recycle</span>
+                <span class="discount">70%</span>
+            </div>
+            <!--product6-->
+            <div class="box">
+                <img src="product/black-14-removebg-preview.png" alt="">
+                <span>fresh item</span>
+                <h2>Black Jacket<br>Stock: 20</h2>
+                <h3 class="price">Rp 200.000</h3>
+                <i class='bx bx-cart-alt'></i>
+                <i class='bx bx-heart' ></i>
+                <div class='progress-bar' role='progressbar' aria-valuenow='75' aria-valuemin='0' aria-valuemax='100'></div>
+                <span class="category">Recycle</span>
+                <span class="discount">70%</span>
+            </div>
+        </div>
+    </section>
+    <!--about-->
+    <section class="about" id="about">
+        <img src="label/—Pngtree—eco friendly icon graphic_8076645.png" alt="">
+        <div class="about-text">
+            <span>About Us</span>
+            <p>Sebagai toko online yang berfokus pada produk-produk ramah lingkungan, Eco Shopper menyediakan berbagai macam produk yang ramah lingkungan</p>
+            <p>dan juga kami bermitra dengan perusahaan-perusahaan yang memang dibidang pada sumberdaya berkelanjutan.</p>
+            <a href="/simple-blog-page-master/images/Tentangkami.html" class="btn">Tentang kami<i class='bx bxs-right-arrow-alt' ></i></a>
+        </div>
+    </section>
+    <!--customer-->
+    <section class="customer" id="customer">
+        <h2>Kenapa customer menyukai aplikasi ini?</h2>
+        <!--customer content-->
+        <div class="customer-container">
+            <!---review1-->
+            <div class="box">
+                <i class='bx bxs-quote-alt-left' ></i>
+                <div class="stars">
+                    <i class='bx bxs-star' ></i>
+                    <i class='bx bxs-star' ></i>
+                    <i class='bx bxs-star' ></i>
+                    <i class='bx bxs-star' ></i>
+                    <i class='bx bxs-star' ></i>
+                </div>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eum ex qui dolor expedita deleniti! Officia similique nesciunt numquam eius enim!</p>
+                <div class="review-profile">
+                    <img src="img/c1.jpg" alt="">
+                    <h3>angelina smith</h3>
+                </div>
+            </div>
+
+             <!---review2-->
+             <div class="box">
+                <i class='bx bxs-quote-alt-left' ></i>
+                <div class="stars">
+                    <i class='bx bxs-star' ></i>
+                    <i class='bx bxs-star' ></i>
+                    <i class='bx bxs-star' ></i>
+                    <i class='bx bxs-star' ></i>
+                    <i class='bx bxs-star' ></i>
+                </div>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eum ex qui dolor expedita deleniti! Officia similique nesciunt numquam eius enim!</p>
+                <div class="review-profile">
+                    <img src="img/c2.jpg" alt="">
+                    <h3>angelina smith</h3>
+                </div>
+            </div>
+             <!---review3-->
+             <div class="box">
+                <i class='bx bxs-quote-alt-left' ></i>
+                <div class="stars">
+                    <i class='bx bxs-star' ></i>
+                    <i class='bx bxs-star' ></i>
+                    <i class='bx bxs-star' ></i>
+                    <i class='bx bxs-star' ></i>
+                    <i class='bx bxs-star' ></i>
+                </div>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eum ex qui dolor expedita deleniti! Officia similique nesciunt numquam eius enim!</p>
+                <div class="review-profile">
+                    <img src="img/c3.jpg" alt="">
+                    <h3>angelina smith</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--footer-->
+    <section class="footer" id="footer">
+        <div class="footer-box">
+            <a href="#" class="logo"><i class='bx bxs-basket'></i>Eco Shopper</a>
+            <p>Jalan kaliurang, KM 12, Kelurahan Beringharjo <br>desa Lama, RT12</p>
+            <div class="social">
+                <a href="#"><i class='bx bxl-instagram' ></i></a>
+                <a href="#"><i class='bx bxl-facebook' ></i></a>
+                <a href="#"><i class='bx bxl-twitter' ></i></a>
+            </div>
+        </div>
+        <div class="footer-box">
+            <h3>kategori</h3>
+            <a href="#">Fashion</a>
+            <a href="#">Accessories</a>
+            <a href="#">Furniture</a>
+            <a href="#">Skin Care</a>
+            <a href="#">Electronic</a>
+        </div>
+        <div class="footer-box">
+            <h3>FAQ!</h3>
+            <a href="#">privacy Policy</a>
+            <a href="#">Terms & Condition</a>
+            <a href="#">Contact Us</a>
+        </div>
+    </section>
+    <!--copyright-->
+    <div class="copy-right">
+        <p>&copy; EcoShopper. All right reserved.</p>
+
+
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <!--link to js-->
+    <script src="js/main.js"></script>
+
+    
+</body>
+</html>
