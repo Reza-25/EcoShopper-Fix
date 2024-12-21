@@ -1,3 +1,8 @@
+<?php
+include 'config.php';
+include 'auth_process.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <!-- Head section remains the same -->
@@ -253,65 +258,75 @@
     <!-- HTML structure remains exactly the same -->
     <div class="container">
         <!-- Login Form -->
-        <div class="form-container login-container">
-            <div class="blue-bg">
-                <h1>Hello, Welcome!</h1>
-                <p class="subtitle">Don't have an account?</p>
-                <button class="white-button" onclick="toggleForm()">Register</button>
-            </div>
-            <div class="white-bg">
-                <h2>Login</h2>
-                <div class="form-group">
-                    <input type="text" placeholder="Username">
-                </div>
-                <div class="form-group">
-                    <input type="password" placeholder="Password">
-                </div>
-                <a href="#" class="forgot-password">Forgot password?</a>
-                <button class="blue-button">Login</button>
-                <p class="social-text">or login with social platforms</p>
-                <div class="social-icons">
-                    <div class="social-icon">G</div>
-                    <div class="social-icon">f</div>
-                    <div class="social-icon">G</div>
-                    <div class="social-icon">in</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Register Form -->
-        <div class="form-container register-container">
-            <div class="white-bg">
-                <h2>Registration</h2>
-                <div class="form-group">
-                    <input type="text" placeholder="Username">
-                </div>
-                <div class="form-group">
-                    <input type="email" placeholder="Email">
-                </div>
-                <div class="form-group">
-                    <input type="password" placeholder="Password">
-                </div>
-                <button class="blue-button">Register</button>
-                <p class="social-text">or register with social platforms</p>
-                <div class="social-icons">
-                    <div class="social-icon">G</div>
-                    <div class="social-icon">f</div>
-                    <div class="social-icon">G</div>
-                    <div class="social-icon">in</div>
-                </div>
-            </div>
-            <div class="blue-bg right">
-                <h1>Welcome Back!</h1>
-                <p class="subtitle">Already have an account?</p>
-                <button class="white-button" onclick="toggleForm()">Login</button>
-            </div>
-        </div>
+<div class="form-container login-container">
+    <div class="blue-bg">
+        <h1>Hello, Welcome!</h1>
+        <p class="subtitle">Don't have an account?</p>
+        <button class="white-button" onclick="toggleForm()">Register</button>
     </div>
+    <div class="white-bg">
+        <h2>Login</h2>
+        <form method="POST" action="login.php" id="loginForm">
+            <div class="form-group">
+                <input type="text" name="username" placeholder="Username" required>
+            </div>
+            <div class="form-group">
+                <input type="password" name="password" placeholder="Password" required>
+            </div>
+            <a href="#" class="forgot-password">Forgot password?</a>
+            <button type="submit" name="login" class="blue-button">Login</button>
+        </form>
+        <p class="social-text">or login with social platforms</p>
+        <div class="social-icons">
+            <div class="social-icon">G</div>
+            <div class="social-icon">f</div>
+            <div class="social-icon">G</div>
+            <div class="social-icon">in</div>
+        </div>
+        <?php if ($loginMessage): ?>
+            <div class="error-message"><?php echo $loginMessage; ?></div>
+        <?php endif; ?>
+    </div>
+</div>
 
-    <!-- JavaScript remains the same -->
-    <script>
-        function toggleForm() {
+<!-- Register Form -->
+<div class="form-container register-container">
+    <div class="white-bg">
+        <h2>Registration</h2>
+        <form method="POST" action="login.php" id="registerForm">
+            <div class="form-group">
+                <input type="text" name="username" placeholder="Username" required>
+            </div>
+            <div class="form-group">
+                <input type="email" name="email" placeholder="Email" required>
+            </div>
+            <div class="form-group">
+                <input type="password" name="password" placeholder="Password" required>
+            </div>
+            <div class="form-group">
+                <input type="password" name="confirmPassword" placeholder="Confirm Password" required>
+            </div>
+            <button type="submit" name="register" class="blue-button">Register</button>
+        </form>
+        <p class="social-text">or register with social platforms</p>
+        <div class="social-icons">
+            <div class="social-icon">G</div>
+            <div class="social-icon">f</div>
+            <div class="social-icon">G</div>
+            <div class="social-icon">in</div>
+        </div>
+        <?php if ($registerMessage): ?>
+            <div class="error-message"><?php echo $registerMessage; ?></div>
+        <?php endif; ?>
+    </div>
+    <div class="blue-bg right">
+        <h1>Welcome Back!</h1>
+        <p class="subtitle">Already have an account?</p>
+        <button class="white-button" onclick="toggleForm()">Login</button>
+    </div>
+</div>
+<script>
+            function toggleForm() {
             const loginContainer = document.querySelector('.login-container');
             const registerContainer = document.querySelector('.register-container');
             
@@ -327,7 +342,19 @@
                 registerContainer.style.opacity = "1";
             }
         }
-    </script>
+
+        <?php if ($loginMessage): ?>
+            <div class="error-message" style="color: red; margin-top: 10px;"><?php echo $loginMessage; ?></div>
+        <?php endif; ?>
+
+        <?php if ($registerMessage): ?>
+            <div class="error-message" style="color: red; margin-top: 10px;"><?php echo $registerMessage; ?></div>
+        <?php endif; ?>
+
+
+</script>
+    
+    
 </body>
 </html>
 

@@ -1,14 +1,13 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "ecoshopper";
+// db_connect.php
+$hostname = "localhost";
+$username = "root";  // sesuaikan dengan username database Anda
+$password = "";      // sesuaikan dengan password database Anda
+$database_name = "ecoshopper"; // nama database Anda
 
-// Create connection
-$conn = mysqli_connect($servername, $username, $password, $dbname);
+$db = mysqli_connect($hostname, $username, $password, $database_name);
 
-// Check connection
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
+if ($db->connect_error) {
+    echo "koneksi database rusak";
 }
 ?>
