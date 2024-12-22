@@ -1,0 +1,15 @@
+CREATE TABLE products (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    price DECIMAL(10, 2) NOT NULL,
+    description TEXT NOT NULL,
+    image VARCHAR(255) NOT NULL,
+    category VARCHAR(50) NOT NULL,
+    material VARCHAR(50) NOT NULL,
+    sustainability_impact VARCHAR(50) NOT NULL,
+    gender VARCHAR(50), --optional, for furniture and electronics
+    type VARCHAR(50) NOT NULL,
+    size VARCHAR(255), -- Optional, for fashion products
+    warranty VARCHAR(50), -- Optional, for electronics and furniture
+    function VARCHAR(50) -- Optional, for furniture
+)

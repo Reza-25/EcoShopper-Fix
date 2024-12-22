@@ -102,7 +102,7 @@ function toggleDropdown() {
                 <div class="home-text">
                     <span>Accessoris</span>
                     <h1>Tas Mewah<br> Kini dengan <br>desain baru</h1>
-                    <a href="/product-aksesoris.html" class="btn">Belanja<i class='bx bxs-right-arrow-alt' ></i></a>
+                    <a href="product-aksesoris.html" class="btn">Belanja<i class='bx bxs-right-arrow-alt' ></i></a>
                 </div>
                 <img id="tas-coklat" src="product/brown-5.png" alt="">
             
@@ -166,7 +166,7 @@ function toggleDropdown() {
     <section class="products" id="products">
         <div class="heading">
             <h1>Our Popular <br><span>Products</span></h1>
-            <a href="/product-fashion.html" class="btn">Belanja<i class='bx bxs-right-arrow-alt' ></i></a>
+            <a href="product-fashion.html" class="btn">Belanja<i class='bx bxs-right-arrow-alt' ></i></a>
         </div>
 
         <!--product content-->
@@ -272,7 +272,7 @@ function toggleDropdown() {
                 </div>
                 <p>Aplikasi ini Sangat Inspiratif, tidak hanya menjual barang saja namun memikirkan bagaimana barang tersebut berpengaruh pada lingkungan kita!, terlebih lagi barang yang di jualnya sangat bagus</p>
                 <div class="review-profile">
-                    <img src="/images/collection-29.jpg" alt="">
+                    <img src="images/collection-29.jpg" alt="">
                     <h3>angelina smith</h3>
                 </div>
             </div>
@@ -289,7 +289,7 @@ function toggleDropdown() {
                 </div>
                 <p>Website ini sangat bagus sekali untuk bagi saya sebagai orang yang suka di bidang fashion, selain barang yang dijual nya sangat bagus dan modis, aplikasi ini juga menawarkan harga yang terjangkau.</p>
                 <div class="review-profile">
-                    <img src="/images/collection-72.jpg" alt="">
+                    <img src="images/collection-72.jpg" alt="">
                     <h3>James Leon</h3>
                 </div>
             </div>
@@ -305,7 +305,7 @@ function toggleDropdown() {
                 </div>
                 <p>Saya sebagai aktivis pada bidang Lingkungan alam, setelah melihat aplikasi ini hati saya terharu karna akhirnya bisa melihat sebuah aplikasi yang tidak hanya menjual barang bagus, namun tetap memperhatikan dampaknya bagi lingkungan kami.</p>
                 <div class="review-profile">
-                    <img src="/images/glasses-1.jpg" alt="">
+                    <img src="images/glasses-1.jpg" alt="">
                     <h3>Sonya Heny</h3>
                 </div>
             </div>
