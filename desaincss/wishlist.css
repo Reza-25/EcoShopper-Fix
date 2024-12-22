@@ -138,6 +138,9 @@
     border-radius: 0.5rem;
     background: var(--bg--color);
     z-index: 1; /* Pastikan elemen berada di atas elemen lain */
+    overflow-y: auto;
+    max-height: 700px;
+    
 }
 
 .checkout.active {
@@ -222,4 +225,5 @@ button:hover {
     background: var(--light-green-color);
     transition: 0.2s all linear;
 }
+
 
