@@ -227,3 +227,59 @@ button:hover {
 }
 
 
+.quantity {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.quantity label {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-right: 0.5rem;
+    color: var(--text--color);
+}
+
+.quantity input[type="number"] {
+    width: 60px;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    text-align: center;
+}
+
+.item-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.item-actions button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-delete {
+    background: #e74c3c;
+    color: var(--bg--color);
+}
+
+.btn-delete:hover {
+    background: #c0392b;
+    transition: 0.2s all linear;
+}
+
+.btn-add {
+    background: var(--green-color);
+    color: var(--bg--color);
+}
+
+.btn-add:hover {
+    background: var(--light-green-color);
+    transition: 0.2s all linear;
+}
+
