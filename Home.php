@@ -31,14 +31,47 @@
 
         <!--profil-->
         <div class="profile">
-            <img src="img/profile.jpg" alt="">
-            <span>Jon Robert</span>
-            <i class='bx bx-caret-down'></i>
-            <div class="profile-dropdown" id="profile-dropdown">
-                <a href="signin.html">Sign In</a>
-                <a href="logout.html">Log Out</a>
-            </div>
-        </div>
+    <?php
+    session_start();
+    include 'config.php';
+    if (isset($_SESSION["user_id"])) {
+        $userId = $_SESSION["user_id"];
+        $stmt = $db->prepare("SELECT profile_picture FROM users WHERE id = ?");
+        $stmt->bind_param("i", $userId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $user = $result->fetch_assoc();
+        $profilePicture = $user["profile_picture"] ? $user["profile_picture"] : 'default-profile.png';
+    ?>
+        <img src="<?php echo $profilePicture; ?>" alt="Profile Picture">
+        <span><?php echo $_SESSION["username"]; ?></span>
+        <i class='bx bx-caret-down' onclick="toggleDropdown()"></i>
+    <?php
+    } else {
+        echo '<a href="login.php">Sign In</a>';
+    }
+    ?>
+</div>
+
+<div class="profile-dropdown" id="profile-dropdown" style="display: none;">
+    <?php if (isset($_SESSION["user_id"])): ?>
+        <a href="logout.php">Log Out</a>
+    <?php else: ?>
+        <a href="login.php">Sign In</a>
+    <?php endif; ?>
+</div>
+
+<script>
+function toggleDropdown() {
+    var dropdown = document.getElementById("profile-dropdown");
+    if (dropdown.style.display === "none") {
+        dropdown.style.display = "block";
+    } else {
+        dropdown.style.display = "none";
+    }
+}
+</script>
+
     </header>
 
     <!--home-->
@@ -283,7 +316,7 @@
     <section class="footer" id="footer">
         <div class="footer-box">
             <a href="#" class="logo"><i class='bx bxs-basket'></i>Eco Shopper</a>
-            <p>Jalan kaliurang, KM 12, Kelurahan Beringharjo <br>desa Lama, RT12</p>
+            <p>Perum The University Residence Blok A. 6, Jln. Kaliurang Km 14,5, RT04 RW06 Tegalsari,  <br>Daerah Istimewa Yogyakarta</p>
             <div class="social">
                 <a href="#"><i class='bx bxl-instagram' ></i></a>
                 <a href="#"><i class='bx bxl-facebook' ></i></a>
@@ -292,11 +325,11 @@
         </div>
         <div class="footer-box">
             <h3>kategori</h3>
-            <a href="#">Fashion</a>
-            <a href="#">Accessories</a>
-            <a href="#">Furniture</a>
-            <a href="#">Skin Care</a>
-            <a href="#">Electronic</a>
+            <a href="/product-fashion.html">Fashion</a>
+            <a href="/product-aksesoris.html">Accessories</a>
+            <a href="/product-furniture.html">Furniture</a>
+            <a href="/product-skincare.html">Skin Care</a>
+            <a href="/product.electronic.html">Electronic</a>
         </div>
         <div class="footer-box">
             <h3>FAQ!</h3>

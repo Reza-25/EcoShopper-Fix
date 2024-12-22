@@ -35,13 +35,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["login"])) {
     $stmt->close();
 }
 
-
 // Proses registrasi
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["register"])) {
     $username = $_POST["username"];
     $email = $_POST["email"];
     $password = $_POST["password"];
     $confirmPassword = $_POST["confirmPassword"];
+    $profilePicture = isset($_FILES["profile_picture"]) ? $_FILES["profile_picture"] : null;
 
     if ($password !== $confirmPassword) {
         $registerMessage = "Password tidak cocok.";
@@ -57,9 +57,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["register"])) {
         if ($result->num_rows > 0) {
             $registerMessage = "Username atau email sudah terdaftar.";
         } else {
+            // Upload foto profil
+            $profilePicturePath = null;
+            if ($profilePicture && $profilePicture["tmp_name"]) {
+                $extension = pathinfo($profilePicture["name"], PATHINFO_EXTENSION);
+                $profilePicturePath = 'uploads/' . uniqid() . '.' . $extension;
+                move_uploaded_file($profilePicture["tmp_name"], $profilePicturePath);
+            }
+
             // Insert pengguna baru ke database
-            $stmt = $db->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)");
-            $stmt->bind_param("sss", $username, $email, $hashedPassword);
+            $stmt = $db->prepare("INSERT INTO users (username, email, password, profile_picture) VALUES (?, ?, ?, ?)");
+            $stmt->bind_param("ssss", $username, $email, $hashedPassword, $profilePicturePath);
             $stmt->execute();
 
             if ($stmt->affected_rows > 0) {

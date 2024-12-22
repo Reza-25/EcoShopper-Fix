@@ -40,6 +40,7 @@ include 'auth_process.php';
         /* Previous container and form styles remain the same */
         .form-container {
             position: absolute;
+            padding: 20px;
             top: 0;
             width: 100%;
             height: 100%;
@@ -276,13 +277,7 @@ include 'auth_process.php';
             <a href="#" class="forgot-password">Forgot password?</a>
             <button type="submit" name="login" class="blue-button">Login</button>
         </form>
-        <p class="social-text">or login with social platforms</p>
-        <div class="social-icons">
-            <div class="social-icon">G</div>
-            <div class="social-icon">f</div>
-            <div class="social-icon">G</div>
-            <div class="social-icon">in</div>
-        </div>
+        
         <?php if ($loginMessage): ?>
             <div class="error-message"><?php echo $loginMessage; ?></div>
         <?php endif; ?>
@@ -292,8 +287,8 @@ include 'auth_process.php';
 <!-- Register Form -->
 <div class="form-container register-container">
     <div class="white-bg">
-        <h2>Registration</h2>
-        <form method="POST" action="login.php" id="registerForm">
+        
+        <form method="POST" action="login.php" id="registerForm" enctype="multipart/form-data">
             <div class="form-group">
                 <input type="text" name="username" placeholder="Username" required>
             </div>
@@ -306,15 +301,12 @@ include 'auth_process.php';
             <div class="form-group">
                 <input type="password" name="confirmPassword" placeholder="Confirm Password" required>
             </div>
+            <div class="form-group">
+                <input type="file" name="profile_picture" accept="image/*">
+            </div>
             <button type="submit" name="register" class="blue-button">Register</button>
         </form>
-        <p class="social-text">or register with social platforms</p>
-        <div class="social-icons">
-            <div class="social-icon">G</div>
-            <div class="social-icon">f</div>
-            <div class="social-icon">G</div>
-            <div class="social-icon">in</div>
-        </div>
+
         <?php if ($registerMessage): ?>
             <div class="error-message"><?php echo $registerMessage; ?></div>
         <?php endif; ?>
