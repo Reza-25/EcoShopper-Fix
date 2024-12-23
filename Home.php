@@ -166,18 +166,17 @@ function toggleDropdown() {
     <section class="products" id="products">
         <div class="heading">
             <h1>Our Popular <br><span>Products</span></h1>
-            <a href="product-fashion.html" class="btn">Belanja<i class='bx bxs-right-arrow-alt' ></i></a>
+            <a href="product-fashion.php" class="btn">Belanja<i class='bx bxs-right-arrow-alt' ></i></a>
         </div>
 
         <!--product content-->
         <div class="products-container">
             <div class="box">
-                <a href="product-detail.html"></a>
                 <img src="product/black-9-removebg-preview.png" alt="">
                 <span>fresh item</span>
                 <h2>Black Sweater<br>Stock: 20</h2>
                 <h3 class="price">Rp 200.000</h3>
-                <a href="/product-detail-card-slider-master/product-detail.html"><i class='bx bx-cart-alt'></i></a>
+                <a href="../EcoShopper-Fix/product-detail-card-slider-master/product-detail.php"><i class='bx bx-cart-alt'></i></a>
                 <i class='bx bx-heart' ></i>
                 <div class='progress-bar' role='progressbar' aria-valuenow='75' aria-valuemin='0' aria-valuemax='100'></div>
                 <span class="category">Recycle</span>
@@ -190,7 +189,7 @@ function toggleDropdown() {
                 <h2>Black Jacket<br>Stock: 20</h2>
                 <h3 class="price">Rp 200.000</h3>
                 <i class='bx bx-cart-alt'></i>
-                <a href="/product-detail-card-slider-master/product-detail.html"><i class='bx bx-heart' ></i></a>
+                <a href="../EcoShopper-Fix/product-detail-card-slider-master/product-detail.php"><i class='bx bx-heart' ></i></a>
                 <div class='progress-bar' role='progressbar' aria-valuenow='75' aria-valuemin='0' aria-valuemax='100'></div>
                 <span class="category">Recycle</span>
                 <span class="discount">70%</span>
@@ -201,7 +200,7 @@ function toggleDropdown() {
                 <span>fresh item</span>
                 <h2>Black Jacket<br>Stock: 20</h2>
                 <h3 class="price">Rp 200.000</h3>
-                <a href="/product-detail-card-slider-master/product-detail.html"><i class='bx bx-cart-alt'></i></a>
+                <a href="../EcoShopper-Fix/product-detail-card-slider-master/product-detail.php"><i class='bx bx-cart-alt'></i></a>
                 <i class='bx bx-heart' ></i>
                 <div class='progress-bar' role='progressbar' aria-valuenow='75' aria-valuemin='0' aria-valuemax='100'></div>
                 <span class="category">Recycle</span>
@@ -213,7 +212,7 @@ function toggleDropdown() {
                 <span>fresh item</span>
                 <h2>Black Jacket<br>Stock: 20</h2>
                 <h3 class="price">Rp 200.000</h3>
-                <a href="/product-detail-card-slider-master/product-detail.html"><i class='bx bx-cart-alt'></i></a>
+                <a href="../EcoShopper-Fix/product-detail-card-slider-master/product-detail.php"><i class='bx bx-cart-alt'></i></a>
                 <i class='bx bx-heart' ></i>
                 <div class='progress-bar' role='progressbar' aria-valuenow='75' aria-valuemin='0' aria-valuemax='100'></div>
                 <span class="category">Recycle</span>
@@ -225,7 +224,7 @@ function toggleDropdown() {
                 <span>fresh item</span>
                 <h2>Black Jacket<br>Stock: 20</h2>
                 <h3 class="price">Rp 200.000</h3>
-                <a href="/product-detail-card-slider-master/product-detail.html"><i class='bx bx-cart-alt'></i></a>
+                <a href="../EcoShopper-Fix/product-detail-card-slider-master/product-detail.php"><i class='bx bx-cart-alt'></i></a>
                 <i class='bx bx-heart' ></i>
                 <div class='progress-bar' role='progressbar' aria-valuenow='75' aria-valuemin='0' aria-valuemax='100'></div>
                 <span class="category">Recycle</span>
@@ -237,7 +236,7 @@ function toggleDropdown() {
                 <span>fresh item</span>
                 <h2>Black Jacket<br>Stock: 20</h2>
                 <h3 class="price">Rp 200.000</h3>
-                <a href="/product-detail-card-slider-master/product-detail.html"><i class='bx bx-cart-alt'></i></a>
+                <a href="../EcoShopper-Fix/product-detail-card-slider-master/product-detail.php"><i class='bx bx-cart-alt'></i></a>
                 <i class='bx bx-heart' ></i>
                 <div class='progress-bar' role='progressbar' aria-valuenow='75' aria-valuemin='0' aria-valuemax='100'></div>
                 <span class="category">Recycle</span>

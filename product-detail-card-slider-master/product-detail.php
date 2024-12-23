@@ -6,42 +6,75 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Product Card/Page</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="/EcoShopper-Fix/desaincss/style.css">
-    <link rel="stylesheet" href="product-detail.css">
+    <link rel="stylesheet" href="../desaincss/style.css">
+    <link rel="stylesheet" href="../product-detail-card-slider-master/product-detail.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
   </head>
   <body>
-    <header>
-      <a href="#" class="logo"><i class='bx bxs-basket'></i>Eco shopper</a>
-      <!--menu icon-->
-      <div class="bx bx-menu" id="menu-icon"></div>
-      <!--nav list-->
-      <ul class="navbar">
-          <li><a href="/Home.html">Home</a></li>
-          <li><a href="/Home.html#categories">Kategori</a></li>
-          <li><a href="/product-aksesoris.html" class="home-active">Produk</a></li>
-          <li><a href="/simple-blog-page-master/images/index.html">Tentang Kami</a></li>
-          <li><a href="/Home.html">Customer</a></li>
-      </ul>
 
-      <!--cart-->
-      <div class="cart">
-          <a href="/cart.html"><i class='bx bx-cart'><span class="count">0</span></i></a>
-      </div>
+  <!--navbar-->
+  <header>
+        <a href="#" class="logo"><i class='bx bxs-basket'></i>Eco shopper</a>
+        <!--menu icon-->
+        <div class="bx bx-menu" id="menu-icon"></div>
+        <!--nav list-->
+        <ul class="navbar">
+            <li><a href="#home" class="home-active">Home</a></li>
+            <li><a href="home.html#categories">Kategori</a></li>
+            <li><a href="#products">Produk</a></li>
+            <li><a href="home.html#about">Tentang Kami</a></li>
+            <li><a href="home.html#customer">Customer</a></li>
+        </ul>
 
-      <!--profil-->
-      <div class="profile">
-          <img src="img/profile.jpg" alt="">
-          <span>Jon Robert</span>
-          <i class='bx bx-caret-down'></i>
-          <div class="profile-dropdown" id="profile-dropdown">
-              <a href="signin.html">Sign In</a>
-              <a href="logout.html">Log Out</a>
-          </div>
-      </div>
-  </header>
+        <!--cart-->
+        <div class="cart">
+            <a href="cart.html"><i class='bx bx-cart'><span class="count">0</span></i></a>
+        </div>
+
+        <!--profil-->
+        <div class="profile">
+            <?php
+            session_start();
+            include '../config.php';
+            if (isset($_SESSION["user_id"])) {
+                $userId = $_SESSION["user_id"];
+                $stmt = $db->prepare("SELECT profile_picture FROM users WHERE id = ?");
+                $stmt->bind_param("i", $userId);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                $user = $result->fetch_assoc();
+                $profilePicture = $user["profile_picture"] ? $user["profile_picture"] : 'default-profile.png';
+            ?>
+                <img src="<?php echo $profilePicture; ?>" alt="Profile Picture">
+                <span><?php echo $_SESSION["username"]; ?></span>
+                <i class='bx bx-caret-down' onclick="toggleDropdown()"></i>
+            <?php
+            } else {
+                echo '<a href="login.php">Sign In</a>';
+            }
+            ?>
+        </div>
+
+        <div class="profile-dropdown" id="profile-dropdown" style="display: none;">
+            <?php if (isset($_SESSION["user_id"])): ?>
+                <a href="logout.php">Log Out</a>
+            <?php else: ?>
+                <a href="login.php">Sign In</a>
+            <?php endif; ?>
+        </div>
+
+        <script>
+        function toggleDropdown() {
+            var dropdown = document.getElementById("profile-dropdown");
+            if (dropdown.style.display === "none") {
+                dropdown.style.display = "block";
+            } else {
+                dropdown.style.display = "none";
+            }
+        }
+        </script>
+    </header>
 
     
     <div class = "card-wrapper">

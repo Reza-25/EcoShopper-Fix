@@ -16,12 +16,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Handle file upload
     $target_dir = "uploads/";
-    $target_file = $target_dir . basename($_FILES["product_image"]["name"]);
-    move_uploaded_file($_FILES["product_image"]["tmp_name"], $target_file);
+    $image_paths = [];
+    foreach ($_FILES['product_images']['name'] as $key => $image_name) {
+        $target_file = $target_dir . basename($image_name);
+        move_uploaded_file($_FILES['product_images']['tmp_name'][$key], $target_file);
+        $image_paths[] = $target_file;
+    }
+    $main_image = $image_paths[0]; // Use the first image as the main image
+    $additional_images = implode(',', array_slice($image_paths, 1)); // Store additional images as comma-separated values
 
     // Insert into database
-    $stmt = $db->prepare("INSERT INTO products (name, price, description, image, category, material, sustainability_impact, gender, type, size, warranty, function) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("sdssssssssss", $name, $price, $description, $target_file, $category, $material, $sustainability_impact, $gender, $type, $size, $warranty, $function);
+    $stmt = $db->prepare("INSERT INTO products (name, price, description, image, additional_images, category, material, sustainability_impact, gender, type, size, warranty, function) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("sdsssssssssss", $name, $price, $description, $main_image, $additional_images, $category, $material, $sustainability_impact, $gender, $type, $size, $warranty, $function);
     $stmt->execute();
     $stmt->close();
 
