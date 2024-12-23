@@ -4,6 +4,8 @@ CREATE TABLE products (
     price DECIMAL(10, 2) NOT NULL,
     description TEXT NOT NULL,
     image VARCHAR(255) NOT NULL,
+    additional_images TEXT,
+    stock INT,
     category VARCHAR(50) NOT NULL,
     material VARCHAR(50) NOT NULL,
     sustainability_impact VARCHAR(50) NOT NULL,

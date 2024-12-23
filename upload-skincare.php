@@ -28,6 +28,10 @@
                     <input type="file" id="product_image" name="product_image" accept="image/*" required>
                 </div>
                 <div class="form-group">
+                    <label for="product_stock">Stok</label>
+                    <input type="number" id="product_stock" name="product_stock" required>
+                </div>
+                <div class="form-group">
                     <label for="material">Material</label>
                     <select id="material" name="material" required>
                         <option value="organik">Organik</option>
@@ -89,7 +93,7 @@
                             echo "<td>" . $row['price'] . "</td>";
                             echo "<td>" . $row['description'] . "</td>";
                             echo "<td>
-                                    <a href='edit_product.php?id=" . $row['id'] . "' class='option-btn'>Edit</a>
+                                    <a href='edit_product.php?id=" . $row['id'] . "&category=skincare' class='option-btn'>Edit</a>
                                     <a href='delete_product.php?id=" . $row['id'] . "' class='delete-btn'>Delete</a>
                                   </td>";
                             echo "</tr>";

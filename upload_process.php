@@ -5,6 +5,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $name = $_POST['product_name'];
     $price = $_POST['product_price'];
     $description = $_POST['product_description'];
+    $stock = $_POST['product_stock'];
     $category = $_POST['category'];
     $material = $_POST['material'];
     $sustainability_impact = $_POST['sustainability_impact'];

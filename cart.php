@@ -10,37 +10,69 @@
     <title>shopping-cart</title>
 </head>
 <body>
-     <!--navbar-->
+      <!--navbar-->
     <header>
         <a href="#" class="logo"><i class='bx bxs-basket'></i>Eco shopper</a>
         <!--menu icon-->
         <div class="bx bx-menu" id="menu-icon"></div>
         <!--nav list-->
         <ul class="navbar">
-            <li><a href="home.html">Home</a></li>
-            <li><a href="home.html">Kategori</a></li>
-            <li><a href="/product-fashion.html">Produk</a></li>
-            <li><a href="/simple-blog-page-master/images/Tentangkami.html">Tentang Kami</a></li>
-            <li><a href="home.html">Customer</a></li>
+            <li><a href="#home" class="home-active">Home</a></li>
+            <li><a href="home.html#categories">Kategori</a></li>
+            <li><a href="#products">Produk</a></li>
+            <li><a href="home.html#about">Tentang Kami</a></li>
+            <li><a href="home.html#customer">Customer</a></li>
         </ul>
+
         <!--cart-->
         <div class="cart">
-            <i class='bx bx-cart'><span class="count">0</span></i>
-
+            <a href="cart.html"><i class='bx bx-cart'><span class="count">0</span></i></a>
         </div>
 
         <!--profil-->
         <div class="profile">
-            <img src="img/profile.jpg" alt="">
-            <span>Jon Robert</span>
-            <i class='bx bx-caret-down'></i>
-        </div>
+    <?php
+    session_start();
+    include 'config.php';
+    if (isset($_SESSION["user_id"])) {
+        $userId = $_SESSION["user_id"];
+        $stmt = $db->prepare("SELECT profile_picture FROM users WHERE id = ?");
+        $stmt->bind_param("i", $userId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $user = $result->fetch_assoc();
+        $profilePicture = $user["profile_picture"] ? $user["profile_picture"] : 'default-profile.png';
+    ?>
+        <img src="<?php echo $profilePicture; ?>" alt="Profile Picture">
+        <span><?php echo $_SESSION["username"]; ?></span>
+        <i class='bx bx-caret-down' onclick="toggleDropdown()"></i>
+    <?php
+    } else {
+        echo '<a href="login.php">Sign In</a>';
+    }
+    ?>
+</div>
+
+<div class="profile-dropdown" id="profile-dropdown" style="display: none;">
+    <?php if (isset($_SESSION["user_id"])): ?>
+        <a href="logout.php">Log Out</a>
+    <?php else: ?>
+        <a href="login.php">Sign In</a>
+    <?php endif; ?>
+</div>
+
+<script>
+function toggleDropdown() {
+    var dropdown = document.getElementById("profile-dropdown");
+    if (dropdown.style.display === "none") {
+        dropdown.style.display = "block";
+    } else {
+        dropdown.style.display = "none";
+    }
+}
+</script>
+
     </header>
-    <div class="label">
-        <h2 class="logo">Shopping cart</h2>
-    </div>
-
-
 
         <!--product-->
         <section class="products" id="products">
