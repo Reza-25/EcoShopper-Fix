@@ -27,8 +27,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $additional_images = implode(',', array_slice($image_paths, 1)); // Store additional images as comma-separated values
 
     // Insert into database
-    $stmt = $db->prepare("INSERT INTO products (name, price, description, image, additional_images, category, material, sustainability_impact, gender, type, size, warranty, function) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("sdsssssssssss", $name, $price, $description, $main_image, $additional_images, $category, $material, $sustainability_impact, $gender, $type, $size, $warranty, $function);
+    $stmt = $db->prepare("INSERT INTO products (name, price, description, image, additional_images, category, material, sustainability_impact, gender, type, size, stock, warranty, function) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("sdssssssssssss", $name, $price, $description, $main_image, $additional_images, $category, $material, $sustainability_impact, $gender, $type, $size, $stock, $warranty, $function);
     $stmt->execute();
     $stmt->close();
 

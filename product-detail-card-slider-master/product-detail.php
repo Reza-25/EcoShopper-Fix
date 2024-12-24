@@ -42,7 +42,7 @@ $additional_images = explode(',', $product['additional_images']);
         <div class="bx bx-menu" id="menu-icon"></div>
         <!--nav list-->
         <ul class="navbar">
-            <li><a href="#home" class="home-active">Home</a></li>
+            <li><a href="../ class="home-active">Home</a></li>
             <li><a href="home.html#categories">Kategori</a></li>
             <li><a href="#products">Produk</a></li>
             <li><a href="home.html#about">Tentang Kami</a></li>
@@ -141,9 +141,15 @@ $additional_images = explode(',', $product['additional_images']);
                         </ul>
                     </div>
                     <div class="purchase-info">
-                        <p>Stok tersedia: <?php echo $product['stock']; ?></p>
-                        <input type="number" min="1" max="<?php echo $product['stock']; ?>" value="1" oninput="validateStock(this)">
-                        <button type="button" class="btn">Add to Cart <i class="fas fa-shopping-cart"></i></button>
+                    <form method="POST" action="../add_to_cart.php">
+                            <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
+                            <input type="hidden" name="product_name" value="<?php echo $product['name']; ?>">
+                            <input type="hidden" name="product_price" value="<?php echo $product['price']; ?>">
+                            <input type="hidden" name="product_image" value="<?php echo $product['image']; ?>">
+                            <p>Stok tersedia: <?php echo $product['stock']; ?></p>
+                            <input type="number" name="quantity" min="1" max="<?php echo $product['stock']; ?>" value="1" oninput="validateStock(this)">
+                            <button type="submit" class="btn">Add to Cart <i class="fas fa-shopping-cart"></i></button>
+                    </form>
                 </div>
             </div>
         </div>

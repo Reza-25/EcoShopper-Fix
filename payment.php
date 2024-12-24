@@ -1,3 +1,22 @@
+<?php
+
+if (!isset($_SESSION["user_id"])) {
+    echo "<script>alert('Kamu harus login terlebih dahulu sebelum melakukan pembayaran!');</script>";
+    header("Location: login.php");
+    exit();
+}
+
+$userId = $_SESSION["user_id"];
+$stmt = $db->prepare("SELECT username, email FROM users WHERE id = ?");
+$stmt->bind_param("i", $userId);
+$stmt->execute();
+$result = $stmt->get_result();
+$user = $result->fetch_assoc();
+
+$checkout_items = isset($_SESSION['checkout']) ? $_SESSION['checkout'] : [];
+$total_price = 0;
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +26,7 @@
     <link rel="stylesheet" href="desaincss/style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;900&display=swap">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
-    <title>Checkout</title>
+    <title>pembayaran</title>
 </head>
 <body>
     <!--navbar-->
@@ -31,15 +50,46 @@
 
         <!--profil-->
         <div class="profile">
-            <img src="img/profile.jpg" alt="">
-            <span>Jon Robert</span>
-            <i class='bx bx-caret-down'></i>
-            <div class="profile-dropdown" id="profile-dropdown">
-                <a href="signin.html">Sign In</a>
-                <a href="logout.html">Log Out</a>
-            </div>
-        </div>
-    </header>
+    <?php
+    session_start();
+    include 'config.php';
+    if (isset($_SESSION["user_id"])) {
+        $userId = $_SESSION["user_id"];
+        $stmt = $db->prepare("SELECT profile_picture FROM users WHERE id = ?");
+        $stmt->bind_param("i", $userId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $user = $result->fetch_assoc();
+        $profilePicture = $user["profile_picture"] ? $user["profile_picture"] : 'default-profile.png';
+    ?>
+        <img src="<?php echo $profilePicture; ?>" alt="Profile Picture">
+        <span><?php echo $_SESSION["username"]; ?></span>
+        <i class='bx bx-caret-down' onclick="toggleDropdown()"></i>
+    <?php
+    } else {
+        echo '<a href="login.php">Sign In</a>';
+    }
+    ?>
+</div>
+
+<div class="profile-dropdown" id="profile-dropdown" style="display: none;">
+    <?php if (isset($_SESSION["user_id"])): ?>
+        <a href="logout.php">Log Out</a>
+    <?php else: ?>
+        <a href="login.php">Sign In</a>
+    <?php endif; ?>
+</div>
+
+<script>
+function toggleDropdown() {
+    var dropdown = document.getElementById("profile-dropdown");
+    if (dropdown.style.display === "none") {
+        dropdown.style.display = "block";
+    } else {
+        dropdown.style.display = "none";
+    }
+}
+</script>
 
     <!-- Main Content -->
     <div class="main-content">
@@ -76,12 +126,12 @@
             <h2>Pembayaran</h2>
             <form action="" class="form">
                 <div class="input-container">
-                    <label for="nama">Nama</label>
-                    <input type="text" id="nama" placeholder="Masukkan nama anda">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" value="<?php echo $user['username']; ?>" readonly>
                 </div>
                 <div class="input-container">
                     <label for="email">Email</label>
-                    <input type="email" id="email" placeholder="Masukkan email anda">
+                    <input type="email" id="email" name="email" value="<?php echo $user['email']; ?>" readonly>
                 </div>
                 <div class="input-container">
                     <label for="alamat">Alamat</label>

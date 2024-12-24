@@ -1,3 +1,42 @@
+<?php
+session_start();
+include 'config.php';
+
+// Function to count items in a category
+function countItems($category, $db) {
+    $stmt = $db->prepare("SELECT COUNT(*) as count FROM products WHERE category = ?");
+    $stmt->bind_param("s", $category);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $row = $result->fetch_assoc();
+    return $row['count'];
+}
+
+$fashion_count = countItems('fashion', $db);
+$aksesoris_count = countItems('aksesoris', $db);
+$furniture_count = countItems('furniture', $db);
+$skincare_count = countItems('skincare', $db);
+$electronic_count = countItems('electronic', $db);
+?>
+
+<?php
+
+$cart_items = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
+$checkout_items = isset($_SESSION['checkout']) ? $_SESSION['checkout'] : [];
+$total_price = 0;
+
+// Function to count total items in the cart
+function countCartItems($cart_items) {
+    $total_items = 0;
+    foreach ($cart_items as $item) {
+        $total_items += $item['quantity'];
+    }
+    return $total_items;
+}
+
+$total_cart_items = countCartItems($cart_items);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,8 +71,6 @@
         <!--profil-->
         <div class="profile">
     <?php
-    session_start();
-    include 'config.php';
     if (isset($_SESSION["user_id"])) {
         $userId = $_SESSION["user_id"];
         $stmt = $db->prepare("SELECT profile_picture FROM users WHERE id = ?");
@@ -126,39 +163,39 @@ function toggleDropdown() {
             <div class="box box1">
                 <img src="img2/dark-blue-2-removebg-preview.png" alt="">
                 <h2>Fashion</h2>
-                <span>22 items</span>
-                <a href="product-fashion.html"><i class='bx bxs-right-arrow-alt' ></i></a>
+                <span><?php echo $fashion_count; ?> items</span>
+                    <a href="product-fashion.php"><i class='bx bxs-right-arrow-alt' ></i></a>
 
             </div>
              <!--box2-->
              <div class="box box2">
                 <img src="img2/light-green-5-removebg-preview.png" alt="">
                 <h2>Acessories</h2>
-                <span>22 items</span>
-                <a href="product-aksesoris.html"><i class='bx bxs-right-arrow-alt' ></i></a>
+                <span><?php echo $aksesoris_count; ?> items</span>
+                    <a href="product-aksesoris.php"><i class='bx bxs-right-arrow-alt' ></i></a>
 
             </div>
              <!--box3-->
              <div class="box box3">
                 <img src="img2/furniture_cate1-removebg-preview.png" alt="">
                 <h2>Furniture</h2>
-                <span>5 items</span>
-                <a href="product-furniture.html"><i class='bx bxs-right-arrow-alt' ></i></a>
+                <span><?php echo $furniture_count; ?> items</span>
+                    <a href="product-furniture.php"><i class='bx bxs-right-arrow-alt' ></i></a>
 
             </div>
              <!--box4-->
              <div class="box box4">
                 <img src="img2/—Pngtree—mock up cosmetic products for_15619191.png" alt="">
                 <h2>Skin care</h2>
-                <span>50 items</span>
-                <a href="product-skincare.html"><i class='bx bxs-right-arrow-alt' ></i></a>
+                <span><?php echo $skincare_count; ?> items</span>
+                    <a href="product-skincare.php"><i class='bx bxs-right-arrow-alt' ></i></a>
             </div>
             <!--box5-->
             <div class="box box5">
                 <img src="img2/black-16.png" alt="">
                 <h2>Electronic</h2>
-                <span>50 items</span>
-                <a href="product.electronic.html"><i class='bx bxs-right-arrow-alt' ></i></a>
+                <span><?php echo $electronic_count; ?> items</span>
+                    <a href="product-electronic.php"><i class='bx bxs-right-arrow-alt' ></i></a>
             </div>
         </div>
     </section>
@@ -251,7 +288,7 @@ function toggleDropdown() {
             <span>About Us</span>
             <p>Sebagai toko online yang berfokus pada produk-produk ramah lingkungan, Eco Shopper menyediakan berbagai macam produk yang ramah lingkungan</p>
             <p>dan juga kami bermitra dengan perusahaan-perusahaan yang memang dibidang pada sumberdaya berkelanjutan.</p>
-            <a href="/simple-blog-page-master/images/Tentangkami.html" class="btn">Tentang kami<i class='bx bxs-right-arrow-alt' ></i></a>
+            <a href="../simple-blog-page-master/images/Tentangkami.php" class="btn">Tentang kami<i class='bx bxs-right-arrow-alt' ></i></a>
         </div>
     </section>
     <!--customer-->

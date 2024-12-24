@@ -25,7 +25,7 @@
                 </div>
                 <div class="form-group">
                     <label for="product_image">Product Image</label>
-                    <input type="file" id="product_image" name="product_image" accept="image/*" required>
+                    <input type="file" id="product_images" name="product_images[]" accept="image/*" multiple required>
                 </div>
                 <div class="form-group">
                     <label for="product_stock">Stok</label>

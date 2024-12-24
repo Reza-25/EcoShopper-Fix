@@ -15,3 +15,28 @@ CREATE TABLE products (
     warranty VARCHAR(50), -- Optional, for electronics and furniture
     function VARCHAR(50) -- Optional, for furniture
 )
+
+CREATE TABLE transactions (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    username VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    alamat VARCHAR(255) NOT NULL,
+    kota VARCHAR(255) NOT NULL,
+    kodepos VARCHAR(10) NOT NULL,
+    nomor VARCHAR(20) NOT NULL,
+    pay VARCHAR(50) NOT NULL,
+    total_price DOUBLE NOT NULL,
+    transaction_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+CREATE TABLE transaction_items (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    transaction_id INT NOT NULL,
+    product_id INT NOT NULL,
+    quantity INT NOT NULL,
+    price DOUBLE NOT NULL,
+    FOREIGN KEY (transaction_id) REFERENCES transactions(id),
+    FOREIGN KEY (product_id) REFERENCES products(id)
+);

@@ -1,3 +1,24 @@
+<?php
+session_start();
+include 'config.php';
+
+// Function to count items in a category
+function countItems($category, $db) {
+    $stmt = $db->prepare("SELECT COUNT(*) as count FROM products WHERE category = ?");
+    $stmt->bind_param("s", $category);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $row = $result->fetch_assoc();
+    return $row['count'];
+}
+
+$fashion_count = countItems('fashion', $db);
+$aksesoris_count = countItems('aksesoris', $db);
+$furniture_count = countItems('furniture', $db);
+$skincare_count = countItems('skincare', $db);
+$electronic_count = countItems('electronic', $db);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,8 +53,6 @@
         <!--profil-->
         <div class="profile">
             <?php
-            session_start();
-            include 'config.php';
             if (isset($_SESSION["user_id"])) {
                 $userId = $_SESSION["user_id"];
                 $stmt = $db->prepare("SELECT profile_picture FROM users WHERE id = ?");
@@ -131,51 +150,50 @@
                 <a href="product-elektronik.php" class="btn-reset">Reset Filter</a>
             </form>
         </div>
-        
-        <!--category-->
-        <section class="categories" id="categories">
-            <!--container content-->
-            <div class="categories-container">
-                <!--box-->
-                <div class="box box1">
-                    <img src="img2/dark-blue-2-removebg-preview.png" alt="">
-                    <h2>Fashion</h2>
-                    <span>22 items</span>
-                    <i class='bx bxs-right-arrow-alt' ></i>
-                    
-                </div>
-                <!--box2-->
-                <div class="box box2">
-                    <img src="img2/light-green-5-removebg-preview.png" alt="">
-                    <h2>Acessories</h2>
-                    <span>22 items</span>
-                    <i class='bx bxs-right-arrow-alt' ></i>
-                    
-                </div>
-                <!--box3-->
-                <div class="box box3">
-                    <img src="img2/furniture_cate1-removebg-preview.png" alt="">
-                    <h2>Furniture</h2>
-                    <span>5 items</span>
-                    <i class='bx bxs-right-arrow-alt' ></i>
-                    
-                </div>
-                <!--box4-->
-                <div class="box box4">
-                    <img src="img2/—Pngtree—mock up cosmetic products for_15619191.png" alt="">
-                    <h2>Skin care</h2>
-                    <span>50 items</span>
-                    <i class='bx bxs-right-arrow-alt' ></i>
-                </div>
-                <!--box5-->
-                <div class="box box5">
+    <!--category-->
+    <section class="categories" id="categories">
+        <!--container content-->
+        <div class="categories-container">
+            <!--box-->
+            <div class="box box1">
+                <img src="img2/dark-blue-2-removebg-preview.png" alt="">
+                <h2>Fashion</h2>
+                <span><?php echo $fashion_count; ?> items</span>
+                    <a href="product-fashion.php"><i class='bx bxs-right-arrow-alt' ></i></a>
+
+            </div>
+             <!--box2-->
+             <div class="box box2">
+                <img src="img2/light-green-5-removebg-preview.png" alt="">
+                <h2>Acessories</h2>
+                <span><?php echo $aksesoris_count; ?> items</span>
+                    <a href="product-aksesoris.php"><i class='bx bxs-right-arrow-alt' ></i></a>
+
+            </div>
+             <!--box3-->
+             <div class="box box3">
+                <img src="img2/furniture_cate1-removebg-preview.png" alt="">
+                <h2>Furniture</h2>
+                <span><?php echo $furniture_count; ?> items</span>
+                    <a href="product-furniture.php"><i class='bx bxs-right-arrow-alt' ></i></a>
+
+            </div>
+             <!--box4-->
+             <div class="box box4">
+                <img src="img2/—Pngtree—mock up cosmetic products for_15619191.png" alt="">
+                <h2>Skin care</h2>
+                <span><?php echo $skincare_count; ?> items</span>
+                    <a href="product-skincare.php"><i class='bx bxs-right-arrow-alt' ></i></a>
+            </div>
+            <!--box5-->
+            <div class="box box5">
                 <img src="img2/black-16.png" alt="">
                 <h2>Electronic</h2>
-                <span>50 items</span>
-                <i class='bx bxs-right-arrow-alt' ></i>
+                <span><?php echo $electronic_count; ?> items</span>
+                    <a href="product-elektronik.php"><i class='bx bxs-right-arrow-alt' ></i></a>
             </div>
         </div>
-        </section>
+    </section>
 
         <!--name Page-->
     <div class="nama-kategori">
@@ -190,7 +208,6 @@
         <!--product content-->
         <div class="products-container">
             <?php
-            include 'config.php';
 
             $category = 'elektronik';
             $material = isset($_GET['material']) ? $_GET['material'] : '';
@@ -223,7 +240,7 @@
             while ($row = $result->fetch_assoc()) {
                 echo "<div class='box'>";
                 echo "<img src='" . $row['image'] . "' alt='Product Image'>";
-                echo "<h2>" . $row['name'] . "<br>Stock: 20</h2>";
+                echo "<h2>" . $row['name'] . "<br>Stock: " . $row['stock'] . "</h2>";
                 echo "<h3 class='price'>Rp " . $row['price'] . "</h3>";
                 echo "<a href='..\EcoShopper-Fix\product-detail-card-slider-master\product-detail.php ?id='><i class='bx bx-cart-alt'></i></a>";
                 echo "<i class='bx bx-heart'></i>";
