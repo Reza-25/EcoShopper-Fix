@@ -38,11 +38,11 @@ $electronic_count = countItems('electronic', $db);
         <div class="bx bx-menu" id="menu-icon"></div>
         <!--nav list-->
         <ul class="navbar">
-            <li><a href="#home" class="home-active">Home</a></li>
-            <li><a href="home.html#categories">Kategori</a></li>
-            <li><a href="#products">Produk</a></li>
-            <li><a href="home.html#about">Tentang Kami</a></li>
-            <li><a href="home.html#customer">Customer</a></li>
+            <li><a href="home.php" class="home-active">Home</a></li>
+            <li><a href="home.php">Kategori</a></li>
+            <li><a href="product-fashion.php">Produk</a></li>
+            <li><a href="simple-blog-page-master/images/Tentangkami.php">Tentang Kami</a></li>
+            <li><a href="home.php">Customer</a></li>
         </ul>
 
         <!--cart-->
