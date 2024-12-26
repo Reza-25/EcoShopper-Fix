@@ -3,9 +3,27 @@ session_start();
 include 'config.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if (!isset($_SESSION["user_id"])) {
+        echo "<script>alert('Kamu harus login terlebih dahulu sebelum melakukan pembayaran!');</script>";
+        header("Location: login.php");
+        exit();
+    }
+
     $userId = $_SESSION["user_id"];
-    $username = $_POST['username'];
-    $email = $_POST['email'];
+    $stmt = $db->prepare("SELECT username, email FROM users WHERE id = ?");
+    $stmt->bind_param("i", $userId);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $user = $result->fetch_assoc();
+
+    if (!$user) {
+        echo "<script>alert('User not found.');</script>";
+        header("Location: login.php");
+        exit();
+    }
+
+    $username = $user['username'];
+    $email = $user['email'];
     $alamat = $_POST['alamat'];
     $kota = $_POST['kota'];
     $kodepos = $_POST['kodepos'];

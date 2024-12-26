@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 40px;
+        }
+        .section img {
+            width: 45%;
+            height: auto;
+            border-radius: 8px;
+        }
+        .section .text {
+            width: 45%;
+        }
+        .section:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+        h1, h2 {
+            color: #444;
+        }
+        p {
+            margin-bottom: 10px;
+        }
+        @media (max-width: 768px) {
+            .section {
+                flex-direction: column;
+                text-align: center;
+            }
+            .section img, .section .text {
+                width: 100%;
+            }
+            .section img {
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Product Profile</h1>
+
+        <div class="section">
+            <img src="./shoes_images/shoe_2.jpg" alt="Material Image">
+            <div class="text">
+                <h2>Material Information</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vestibulum, lorem at consequat cursus, est libero feugiat odio, a facilisis nisi velit sit amet neque. Nulla facilisi.</p>
+                <p>Material: 100% Organik</p>
+                <p>Features: Durable, Lightweight, Eco-friendly</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <img src="./shoes_images/https___asset.kgnewsroom.com_photo_pre_2019_08_01_1206fd38-6f54-4055-b810-4c7fa3aa285e_jpg.jpg" alt="Environmental Impact">
+            <div class="text">
+                <h2>Environmental Impact</h2>
+                <p>Our product is designed with sustainability in mind, reducing carbon emissions by 30% during production.</p>
+                <p>Carbon Footprint: 2.3 kg CO2e per unit</p>
+                <p>Recyclability: 90%</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <img src="./shoes_images/Pegawai-Pertamina-Lubricants-e1718335980553.webp" alt="Environmental Impact">
+            <div class="text">
+                <h2>Our Packaging</h2>
+                <p>Kami bangga menghadirkan produk yang terbuat dari bahan organik berkualitas tinggi, dirancang untuk menjaga kelestarian lingkungan tanpa mengorbankan kualitas. Bahan organik, seperti bambu, serat alami, dan material daur ulang, memberikan kombinasi sempurna antara kekuatan dan keberlanjutan.
+
+                    Material organik yang kami gunakan memiliki berbagai keunggulan:
+                    
+                    Biodegradable: Bahan ini dapat terurai secara alami sehingga tidak menambah beban pada lingkungan.
+                    Sumber Terbarukan: Kami memilih bahan dari sumber daya yang dapat diperbarui, memastikan keberlanjutan di setiap langkah.
+                    Bebas Bahan Kimia Berbahaya: Proses produksi kami meminimalkan penggunaan bahan kimia untuk menjaga kesehatan manusia dan lingkungan..</p>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

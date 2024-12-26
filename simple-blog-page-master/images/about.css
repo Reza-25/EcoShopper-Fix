@@ -74,7 +74,7 @@ header{
     font-family: var(--Roboto);
     letter-spacing: 1px;
     font-weight: 500;
-    color: #fff;
+    color: var(--dark);
     text-decoration: none;
     display: inline-block;
     padding: 0.4rem 0.1rem;
@@ -108,6 +108,10 @@ header{
     font-family: var(--Roboto);
     font-weight: 300;
     word-spacing: 2px;
+}
+
+button .navbar-brand .fade-in{
+    display: none;
 }
 .banner form{
     background: #fff;

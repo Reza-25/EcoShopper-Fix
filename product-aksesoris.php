@@ -2,6 +2,10 @@
 session_start();
 include 'config.php';
 
+
+// Simpan halaman sebelumnya di session
+$_SESSION['previous_page'] = basename($_SERVER['PHP_SELF']);
+
 // Function to count items in a category
 function countItems($category, $db) {
     $stmt = $db->prepare("SELECT COUNT(*) as count FROM products WHERE category = ?");
@@ -37,16 +41,16 @@ $electronic_count = countItems('electronic', $db);
         <div class="bx bx-menu" id="menu-icon"></div>
         <!--nav list-->
         <ul class="navbar">
-            <li><a href="home.php" class="home-active">Home</a></li>
-            <li><a href="home.php">Kategori</a></li>
-            <li><a href="product-fashion.php">Produk</a></li>
+            <li><a href="home.php">Home</a></li>
+            <li><a href="#categories">Kategori</a></li>
+            <li><a href="#products" class="home-active">Produk</a></li>
             <li><a href="simple-blog-page-master/images/Tentangkami.php">Tentang Kami</a></li>
             <li><a href="home.php">Customer</a></li>
         </ul>
 
         <!--cart-->
         <div class="cart">
-            <a href="cart.html"><i class='bx bx-cart'><span class="count">0</span></i></a>
+            <a href="cart.php"><i class='bx bx-cart'><span class="count">0</span></i></a>
         </div>
 
         <!--profil-->
@@ -131,14 +135,6 @@ $electronic_count = countItems('electronic', $db);
                     </select>
                 </div>
                 <div class="filter-group">
-                    <label for="price">Harga</label>
-                    <select id="price" name="price">
-                        <option value="">Semua</option>
-                        <option value="asc">Tertinggi</option>
-                        <option value="desc">Terendah</option>
-                    </select>
-                </div>
-                <div class="filter-group">
                     <label for="type">Jenis</label>
                     <select id="type" name="type">
                         <option value="">Semua</option>
@@ -213,7 +209,6 @@ $electronic_count = countItems('electronic', $db);
             $material = isset($_GET['material']) ? $_GET['material'] : '';
             $keberlanjutan = isset($_GET['keberlanjutan']) ? $_GET['keberlanjutan'] : '';
             $gender = isset($_GET['gender']) ? $_GET['gender'] : '';
-            $price = isset($_GET['price']) ? $_GET['price'] : '';
             $type = isset($_GET['type']) ? $_GET['type'] : '';
 
             // Build the query
@@ -231,9 +226,6 @@ $electronic_count = countItems('electronic', $db);
             if ($type) {
                 $query .= " AND type='$type'";
             }
-            if ($price) {
-                $query .= " ORDER BY price " . ($price == 'asc' ? 'ASC' : 'DESC');
-            }
 
             $result = $db->query($query);
 
@@ -242,7 +234,7 @@ $electronic_count = countItems('electronic', $db);
                 echo "<img src='" . $row['image'] . "' alt='Product Image'>";
                 echo "<h2>" . $row['name'] . "<br>Stock: " . $row['stock'] . "</h2>";
                 echo "<h3 class='price'>Rp " . $row['price'] . "</h3>";
-                echo "<a href='..\EcoShopper-Fix\product-detail-card-slider-master\product-detail.php ?id='><i class='bx bx-cart-alt'></i></a>";
+                echo "<a href='..\EcoShopper-Fix\product-detail-card-slider-master\product-detail.php ?id=" . $row['id'] . "'><i class='bx bx-cart-alt'></i></a>";
                 echo "<i class='bx bx-heart'></i>";
                 echo "<div class='progress-bar' role='progressbar' aria-valuenow='75' aria-valuemin='0' aria-valuemax='100'></div>";
                 echo "<span class='category'>" . $row['material'] . "</span>";

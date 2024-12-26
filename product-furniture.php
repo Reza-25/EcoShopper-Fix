@@ -2,6 +2,10 @@
 session_start();
 include 'config.php';
 
+
+// Simpan halaman sebelumnya di session
+$_SESSION['previous_page'] = basename($_SERVER['PHP_SELF']);
+
 // Function to count items in a category
 function countItems($category, $db) {
     $stmt = $db->prepare("SELECT COUNT(*) as count FROM products WHERE category = ?");
@@ -37,16 +41,16 @@ $electronic_count = countItems('electronic', $db);
         <div class="bx bx-menu" id="menu-icon"></div>
         <!--nav list-->
         <ul class="navbar">
-            <li><a href="home.php" class="home-active">Home</a></li>
+            <li><a href="home.php" >Home</a></li>
             <li><a href="home.php">Kategori</a></li>
-            <li><a href="product-fashion.php">Produk</a></li>
+            <li><a href="product-fashion.php" class="home-active">Produk</a></li>
             <li><a href="simple-blog-page-master/images/Tentangkami.php">Tentang Kami</a></li>
             <li><a href="home.php">Customer</a></li>
         </ul>
 
         <!--cart-->
         <div class="cart">
-            <a href="cart.html"><i class='bx bx-cart'><span class="count">0</span></i></a>
+            <a href="cart.php"><i class='bx bx-cart'><span class="count">0</span></i></a>
         </div>
 
         <!--profil-->

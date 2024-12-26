@@ -2,6 +2,10 @@
 session_start();
 include 'config.php';
 
+
+// Simpan halaman sebelumnya di session
+$_SESSION['previous_page'] = basename($_SERVER['PHP_SELF']);
+
 // Function to count items in a category
 function countItems($category, $db) {
     $stmt = $db->prepare("SELECT COUNT(*) as count FROM products WHERE category = ?");
@@ -47,7 +51,7 @@ $electronic_count = countItems('electronic', $db);
 
         <!--cart-->
         <div class="cart">
-            <a href="cart.html"><i class='bx bx-cart'><span class="count">0</span></i></a>
+            <a href="cart.php"><i class='bx bx-cart'><span class="count">0</span></i></a>
         </div>
 
         <!--profil-->
@@ -127,13 +131,6 @@ $electronic_count = countItems('electronic', $db);
                     </select>
                 </div>
                 <div class="filter-group">
-                    <label for="price">Harga</label>
-                    <select id="price" name="price">
-                        <option value="asc">Tertinggi</option>
-                        <option value="desc">Terendah</option>
-                    </select>
-                </div>
-                <div class="filter-group">
                     <label for="type">Jenis</label>
                     <select id="type" name="type">
                         <option value="Anti-aging">Anti-Aging(Anti Penuaan)</option>
@@ -209,7 +206,6 @@ $electronic_count = countItems('electronic', $db);
             $material = isset($_GET['material']) ? $_GET['material'] : '';
             $keberlanjutan = isset($_GET['keberlanjutan']) ? $_GET['keberlanjutan'] : '';
             $gender = isset($_GET['gender']) ? $_GET['gender'] : '';
-            $price = isset($_GET['price']) ? $_GET['price'] : '';
             $type = isset($_GET['type']) ? $_GET['type'] : '';
 
             // Build the query
@@ -226,9 +222,6 @@ $electronic_count = countItems('electronic', $db);
             }
             if ($type) {
                 $query .= " AND type='$type'";
-            }
-            if ($price) {
-                $query .= " ORDER BY price " . ($price == 'asc' ? 'ASC' : 'DESC');
             }
 
             $result = $db->query($query);

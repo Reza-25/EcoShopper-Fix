@@ -2,6 +2,10 @@
 session_start();
 include 'config.php';
 
+
+// Simpan halaman sebelumnya di session
+$_SESSION['previous_page'] = basename($_SERVER['PHP_SELF']);
+
 // Function to count items in a category
 function countItems($category, $db) {
     $stmt = $db->prepare("SELECT COUNT(*) as count FROM products WHERE category = ?");
@@ -38,16 +42,16 @@ $electronic_count = countItems('electronic', $db);
         <div class="bx bx-menu" id="menu-icon"></div>
         <!--nav list-->
         <ul class="navbar">
-            <li><a href="home.php" class="home-active">Home</a></li>
+            <li><a href="home.php" >Home</a></li>
             <li><a href="home.php">Kategori</a></li>
-            <li><a href="product-fashion.php">Produk</a></li>
+            <li><a href="product-fashion.php" class="home-active">Produk</a></li>
             <li><a href="simple-blog-page-master/images/Tentangkami.php">Tentang Kami</a></li>
             <li><a href="home.php">Customer</a></li>
         </ul>
 
         <!--cart-->
         <div class="cart">
-            <a href="cart.html"><i class='bx bx-cart'><span class="count">0</span></i></a>
+            <a href="cart.php"><i class='bx bx-cart'><span class="count">0</span></i></a>
         </div>
 
         <!--profil-->
@@ -130,13 +134,6 @@ $electronic_count = countItems('electronic', $db);
                     </select>
                 </div>
                 <div class="filter-group">
-                    <label for="price">Harga</label>
-                    <select id="price" name="price">
-                        <option value="asc">Tinggi</option>
-                        <option value="desc">Rendah</option>
-                    </select>
-                </div>
-                <div class="filter-group">
                     <label for="type">Jenis</label>
                     <select id="type" name="type">
                         <option value="headphone">Headphone</option>
@@ -213,7 +210,6 @@ $electronic_count = countItems('electronic', $db);
             $material = isset($_GET['material']) ? $_GET['material'] : '';
             $keberlanjutan = isset($_GET['keberlanjutan']) ? $_GET['keberlanjutan'] : '';
             $warranty = isset($_GET['warranty']) ? $_GET['warranty'] : '';
-            $price = isset($_GET['price']) ? $_GET['price'] : '';
             $type = isset($_GET['type']) ? $_GET['type'] : '';
 
             // Build the query
@@ -230,9 +226,6 @@ $electronic_count = countItems('electronic', $db);
             }
             if ($type) {
                 $query .= " AND type='$type'";
-            }
-            if ($price) {
-                $query .= " ORDER BY price " . ($price == 'asc' ? 'ASC' : 'DESC');
             }
 
             $result = $db->query($query);

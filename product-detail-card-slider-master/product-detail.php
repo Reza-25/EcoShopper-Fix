@@ -9,7 +9,12 @@ $result = $stmt->get_result();
 $product = $result->fetch_assoc();
 
 $additional_images = explode(',', $product['additional_images']);
+
+// Dapatkan halaman sebelumnya dari session
+$previous_page = isset($_SESSION['previous_page']) ? $_SESSION['previous_page'] : 'home.php';
 ?>
+
+
 
 <!DOCTYPE html>
 <html>
@@ -42,16 +47,16 @@ $additional_images = explode(',', $product['additional_images']);
         <div class="bx bx-menu" id="menu-icon"></div>
         <!--nav list-->
         <ul class="navbar">
-            <li><a href="../ class="home-active">Home</a></li>
-            <li><a href="home.html#categories">Kategori</a></li>
-            <li><a href="#products">Produk</a></li>
+            <li><a href="/Home.php">Home</a></li>
+            <li><a href="/product.">Kategori</a></li>
+            <li><a href="../<?php echo $previous_page; ?>">Produk</a></li>
             <li><a href="home.html#about">Tentang Kami</a></li>
             <li><a href="home.html#customer">Customer</a></li>
         </ul>
 
         <!--cart-->
         <div class="cart">
-            <a href="cart.html"><i class='bx bx-cart'><span class="count">0</span></i></a>
+            <a href="../cart.php"><i class='bx bx-cart'><span class="count">0</span></i></a>
         </div>
 
         <!--profil-->
@@ -67,7 +72,7 @@ $additional_images = explode(',', $product['additional_images']);
                 $user = $result->fetch_assoc();
                 $profilePicture = $user["profile_picture"] ? $user["profile_picture"] : 'default-profile.png';
             ?>
-                <img src="<?php echo $profilePicture; ?>" alt="Profile Picture">
+                <img src="../<?php echo $profilePicture; ?>" alt="Profile Picture">
                 <span><?php echo $_SESSION["username"]; ?></span>
                 <i class='bx bx-caret-down' onclick="toggleDropdown()"></i>
             <?php
@@ -138,6 +143,7 @@ $additional_images = explode(',', $product['additional_images']);
                             <?php if ($product['warranty']): ?>
                                 <li>Warranty: <span><?php echo $product['warranty']; ?></span></li>
                             <?php endif; ?>
+                            <li><a href="Profil-produk.html">Learn More about this product</a></li>
                         </ul>
                     </div>
                     <div class="purchase-info">

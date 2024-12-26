@@ -1,4 +1,6 @@
 <?php
+session_start();
+include 'config.php';
 
 if (!isset($_SESSION["user_id"])) {
     echo "<script>alert('Kamu harus login terlebih dahulu sebelum melakukan pembayaran!');</script>";
@@ -13,6 +15,12 @@ $stmt->execute();
 $result = $stmt->get_result();
 $user = $result->fetch_assoc();
 
+if (!$user) {
+    echo "<script>alert('User not found.');</script>";
+    header("Location: login.php");
+    exit();
+}
+
 $checkout_items = isset($_SESSION['checkout']) ? $_SESSION['checkout'] : [];
 $total_price = 0;
 ?>
@@ -26,7 +34,7 @@ $total_price = 0;
     <link rel="stylesheet" href="desaincss/style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;900&display=swap">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
-    <title>pembayaran</title>
+    <title>Pembayaran</title>
 </head>
 <body>
     <!--navbar-->
@@ -45,125 +53,110 @@ $total_price = 0;
 
         <!--cart-->
         <div class="cart">
-            <a href="cart.html"><i class='bx bx-cart'><span class="count">0</span></i></a>
+            <a href="cart.php"><i class='bx bx-cart'><span class="count">0</span></i></a>
         </div>
 
         <!--profil-->
         <div class="profile">
-    <?php
-    session_start();
-    include 'config.php';
-    if (isset($_SESSION["user_id"])) {
-        $userId = $_SESSION["user_id"];
-        $stmt = $db->prepare("SELECT profile_picture FROM users WHERE id = ?");
-        $stmt->bind_param("i", $userId);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $user = $result->fetch_assoc();
-        $profilePicture = $user["profile_picture"] ? $user["profile_picture"] : 'default-profile.png';
-    ?>
-        <img src="<?php echo $profilePicture; ?>" alt="Profile Picture">
-        <span><?php echo $_SESSION["username"]; ?></span>
-        <i class='bx bx-caret-down' onclick="toggleDropdown()"></i>
-    <?php
-    } else {
-        echo '<a href="login.php">Sign In</a>';
-    }
-    ?>
-</div>
+            <?php
+            if (isset($_SESSION["user_id"])) {
+                $userId = $_SESSION["user_id"];
+                $stmt = $db->prepare("SELECT profile_picture FROM users WHERE id = ?");
+                $stmt->bind_param("i", $userId);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                $user = $result->fetch_assoc();
+                $profilePicture = $user["profile_picture"] ? $user["profile_picture"] : 'default-profile.png';
+            ?>
+                <img src="<?php echo $profilePicture; ?>" alt="Profile Picture">
+                <span><?php echo $_SESSION["username"]; ?></span>
+                <i class='bx bx-caret-down' onclick="toggleDropdown()"></i>
+            <?php
+            } else {
+                echo '<a href="login.php">Sign In</a>';
+            }
+            ?>
+        </div>
 
-<div class="profile-dropdown" id="profile-dropdown" style="display: none;">
-    <?php if (isset($_SESSION["user_id"])): ?>
-        <a href="logout.php">Log Out</a>
-    <?php else: ?>
-        <a href="login.php">Sign In</a>
-    <?php endif; ?>
-</div>
+        <div class="profile-dropdown" id="profile-dropdown" style="display: none;">
+            <?php if (isset($_SESSION["user_id"])): ?>
+                <a href="logout.php">Log Out</a>
+            <?php else: ?>
+                <a href="login.php">Sign In</a>
+            <?php endif; ?>
+        </div>
 
-<script>
-function toggleDropdown() {
-    var dropdown = document.getElementById("profile-dropdown");
-    if (dropdown.style.display === "none") {
-        dropdown.style.display = "block";
-    } else {
-        dropdown.style.display = "none";
-    }
-}
-</script>
+        <script>
+        function toggleDropdown() {
+            var dropdown = document.getElementById("profile-dropdown");
+            if (dropdown.style.display === "none") {
+                dropdown.style.display = "block";
+            } else {
+                dropdown.style.display = "none";
+            }
+        }
+        </script>
+    </header>
 
-    <!-- Main Content -->
-    <div class="main-content">
-        <!--Product List-->
-        <section class="product-list" id="product">
-            <h2>Produk yang Dipilih</h2>
+    <section class="product-list" id="product">
+        <h2>Produk yang Dipilih</h2>
+        <?php foreach ($checkout_items as $item): ?>
             <div class="product-container">
-                <img src="product/black-14-removebg-preview.png" alt="black-hat">
-                <span>Black Hat</span>
-                <p class="price">Rp 20.000</p>
-                <p class="kuantiti">jumlah barang: 1</p>
+                <img src="<?php echo $item['image']; ?>" alt="<?php echo $item['name']; ?>">
+                <span><?php echo $item['name']; ?></span>
+                <p class="price">Rp <?php echo number_format($item['price'], 0, ',', '.'); ?></p>
+                <p class="kuantiti">jumlah barang: <?php echo $item['quantity']; ?></p>
             </div>
-            <div class="product-container">
-                <img src="product/black-8-removebg-preview.png" alt="Scarf">
-                <span>Sorban Hitam</span>
-                <p class="price">Rp 100.000</p>
-                <p class="kuantiti">jumlah barang: 1</p>
-            </div>
-            <div class="product-container">
-                <img src="product/sneaker-4.png" alt="Sepatu">
-                <span>sepatu</span>
-                <p class="price">Rp 150.000</p>
-                <p class="kuantiti">jumlah barang: 1</p>
-            </div>
-            <!--total-->
-            <div class="total">
-                <h1 class="pajak">Pajak: 10%</h1>
-                <h2>Total: Rp 270.000</h2>
-            </div>
-        </section>
+            <?php $total_price += $item['price'] * $item['quantity']; ?>
+        <?php endforeach; ?>
+        <!--total-->
+        <div class="total">
+            <h1 class="pajak">Pajak: 10%</h1>
+            <h2>Total: Rp <?php echo number_format($total_price * 1.1, 0, ',', '.'); ?></h2>
+        </div>
+    </section>
 
-        <!--Pembayaran Form-->
-        <section class="payment-form">
-            <h2>Pembayaran</h2>
-            <form action="" class="form">
-                <div class="input-container">
-                    <label for="username">Username</label>
-                    <input type="text" id="username" name="username" value="<?php echo $user['username']; ?>" readonly>
-                </div>
-                <div class="input-container">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" value="<?php echo $user['email']; ?>" readonly>
-                </div>
-                <div class="input-container">
-                    <label for="alamat">Alamat</label>
-                    <input type="text" id="alamat" placeholder="Masukkan alamat anda">
-                </div>
-                <div class="input-container">
-                    <label for="kota">Kota</label>
-                    <input type="text" id="kota" placeholder="Masukkan kota anda">
-                </div>
-                <div class="input-container">
-                    <label for="kodepos">Kode Pos</label>
-                    <input type="text" id="kodepos" placeholder="Masukkan kode pos anda">
-                </div>
-                <div class="input-container">
-                    <label for="nomor">Nomor Telepon</label>
-                    <input type="text" id="nomor" placeholder="Masukkan nomor telepon anda">
-                </div>
-                <div class="metode-pembayaran">
-                    <label for="pay">Pilih Metode Pembayaran</label>
-                    <select name="pay" id="pay">
-                        <option value="gopay">Gopay</option>
-                        <option value="ovo">Ovo</option>
-                        <option value="dana">Dana</option>
-                        <option value="linkaja">Linkaja</option>
-                        <option value="transfer">Transfer Bank</option>
-                    </select>
-                </div>
-                <button type="submit">Bayar</button>
-            </form>
-        </section>
-    </div>
-
-    <script src="/js/checkout.js"></script>
+    <!--Pembayaran Form-->
+    <section class="payment-form">
+        <h2>Pembayaran</h2>
+        <form action="process_payment.php" method="POST" class="form">
+            <div class="input-container">
+                <label for="alamat">Alamat</label>
+                <input type="text" id="alamat" name="alamat" placeholder="Masukkan alamat anda" required>
+            </div>
+            <div class="input-container">
+                <label for="kota">Kota</label>
+                <input type="text" id="kota" name="kota" placeholder="Masukkan kota anda" required>
+            </div>
+            <div class="input-container">
+                <label for="kodepos">Kode Pos</label>
+                <input type="text" id="kodepos" name="kodepos" placeholder="Masukkan kode pos anda" required>
+            </div>
+            <div class="input-container">
+                <label for="nomor">Nomor Telepon</label>
+                <input type="text" id="nomor" name="nomor" placeholder="Masukkan nomor telepon anda" required>
+            </div>
+            <div class="pilih-kurir">
+                <label for="kurir">Pilih Kurir</label>
+                <select name="kurir" id="kurir" required>
+                    <option value="jne">JNE</option>
+                    <option value="tiki">TIKI</option>
+                    <option value="SiCepat">Sicepat</option>
+                    <option value="pos">POS Indonesia</option>
+                </select>
+            </div>
+            <div class="metode-pembayaran">
+                <label for="pay">Pilih Metode Pembayaran</label>
+                <select name="pay" id="pay" required>
+                    <option value="gopay">Gopay</option>
+                    <option value="ovo">Ovo</option>
+                    <option value="dana">Dana</option>
+                    <option value="linkaja">Linkaja</option>
+                    <option value="transfer">Transfer Bank</option>
+                </select>
+            </div>
+            <button type="submit">Bayar</button>
+        </form>
+    </section>
 </body>
 </html>

@@ -2,6 +2,23 @@
 session_start();
 include 'config.php';
 
+// Inisialisasi variabel $cart_items
+$cart_items = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
+
+function countCartItems($cart_items) {
+    $total_items = 0;
+    foreach ($cart_items as $item) {
+        $total_items += $item['quantity'];
+    }
+    return $total_items;
+}
+
+$total_cart_items = countCartItems($cart_items);
+
+
+// Simpan halaman sebelumnya di session
+$_SESSION['previous_page'] = basename($_SERVER['PHP_SELF']);
+
 // Function to count items in a category
 function countItems($category, $db) {
     $stmt = $db->prepare("SELECT COUNT(*) as count FROM products WHERE category = ?");
@@ -37,16 +54,16 @@ $electronic_count = countItems('electronic', $db);
         <div class="bx bx-menu" id="menu-icon"></div>
         <!--nav list-->
         <ul class="navbar">
-            <li><a href="home.php" class="home-active">Home</a></li>
+            <li><a href="home.php" >Home</a></li>
             <li><a href="home.php">Kategori</a></li>
-            <li><a href="product-fashion.php">Produk</a></li>
+            <li><a href="product-fashion.php" class="home-active">Produk</a></li>
             <li><a href="simple-blog-page-master/images/Tentangkami.php">Tentang Kami</a></li>
             <li><a href="home.php">Customer</a></li>
         </ul>
 
         <!--cart-->
         <div class="cart">
-            <a href="cart.html"><i class='bx bx-cart'><span class="count">0</span></i></a>
+            <a href="cart.php"><i class='bx bx-cart'><span class="count">0</span></i></a>
         </div>
 
         <!--profil-->
@@ -128,14 +145,6 @@ $electronic_count = countItems('electronic', $db);
                         <option value="men">Pria</option>
                         <option value="women">Wanita</option>
                         <option value="anak">Anak-anak</option>
-                    </select>
-                </div>
-                <div class="filter-group">
-                    <label for="price">Harga</label>
-                    <select id="price" name="price">
-                        <option value="">Semua</option>
-                        <option value="asc">Tertinggi</option>
-                        <option value="desc">Terendah</option>
                     </select>
                 </div>
                 <div class="filter-group">
@@ -224,7 +233,6 @@ $electronic_count = countItems('electronic', $db);
             $material = isset($_GET['material']) ? $_GET['material'] : '';
             $keberlanjutan = isset($_GET['keberlanjutan']) ? $_GET['keberlanjutan'] : '';
             $gender = isset($_GET['gender']) ? $_GET['gender'] : '';
-            $price = isset($_GET['price']) ? $_GET['price'] : '';
             $size = isset($_GET['size']) ? $_GET['size'] : '';
             $type = isset($_GET['type']) ? $_GET['type'] : '';
 
@@ -245,9 +253,6 @@ $electronic_count = countItems('electronic', $db);
             }
             if ($type) {
                 $query .= " AND type='$type'";
-            }
-            if ($price) {
-                $query .= " ORDER BY price " . ($price == 'asc' ? 'ASC' : 'DESC');
             }
 
             $result = $db->query($query);

@@ -57,15 +57,15 @@ $total_cart_items = countCartItems($cart_items);
         <!--nav list-->
         <ul class="navbar">
             <li><a href="#home" class="home-active">Home</a></li>
-            <li><a href="home.html#categories">Kategori</a></li>
+            <li><a href="#categories">Kategori</a></li>
             <li><a href="#products">Produk</a></li>
-            <li><a href="home.html#about">Tentang Kami</a></li>
-            <li><a href="home.html#customer">Customer</a></li>
+            <li><a href="#about">Tentang Kami</a></li>
+            <li><a href="#customer">Customer</a></li>
         </ul>
 
         <!--cart-->
         <div class="cart">
-            <a href="cart.html"><i class='bx bx-cart'><span class="count">0</span></i></a>
+            <a href="cart.php"><i class='bx bx-cart'><span class="count">0</span></i></a>
         </div>
 
         <!--profil-->
@@ -119,7 +119,7 @@ function toggleDropdown() {
                 <div class="home-text">
                     <span>Fashion</span>
                     <h1>varian baru<br>dengan diskon gede<br></h1>
-                    <a href="/product-fashion.html" class="btn">Belanja<i class='bx bxs-right-arrow-alt' ></i></a>
+                    <a href="product-fashion.php" class="btn">Belanja<i class='bx bxs-right-arrow-alt' ></i></a>
                 </div>
                 <img class="shirt" src="product/black-9-removebg-preview.png" alt="">
             
@@ -129,7 +129,7 @@ function toggleDropdown() {
                 <div class="home-text">
                     <span>Electronic</span>
                     <h1>Headphone baru<br> dengan warna <br>baru</h1>
-                    <a href="/product.electronic.html" class="btn">Belanja<i class='bx bxs-right-arrow-alt' ></i></a>
+                    <a href="product-fashion.php" class="btn">Belanja<i class='bx bxs-right-arrow-alt' ></i></a>
                 </div>
                 <img id="headphone-image" src="product/headphone-9.png" alt="">
             
@@ -139,7 +139,7 @@ function toggleDropdown() {
                 <div class="home-text">
                     <span>Accessoris</span>
                     <h1>Tas Mewah<br> Kini dengan <br>desain baru</h1>
-                    <a href="product-aksesoris.html" class="btn">Belanja<i class='bx bxs-right-arrow-alt' ></i></a>
+                    <a href="product-fashion.php" class="btn">Belanja<i class='bx bxs-right-arrow-alt' ></i></a>
                 </div>
                 <img id="tas-coklat" src="product/brown-5.png" alt="">
             
@@ -155,7 +155,7 @@ function toggleDropdown() {
     <section class="categories" id="categories">
         <div class="heading">
             <h1>Jelajahi Produk Kami<br><span>Kategori</span></h1>
-            <a href="/product-fashion.html" class="btn">Belanja<i class='bx bxs-right-arrow-alt' ></i></a>
+            <a href="product-fashion.php" class="btn">Belanja<i class='bx bxs-right-arrow-alt' ></i></a>
         </div>
         <!--container content-->
         <div class="categories-container">
@@ -208,77 +208,53 @@ function toggleDropdown() {
 
         <!--product content-->
         <div class="products-container">
-            <div class="box">
-                <img src="product/black-9-removebg-preview.png" alt="">
-                <span>fresh item</span>
-                <h2>Black Sweater<br>Stock: 20</h2>
-                <h3 class="price">Rp 200.000</h3>
-                <a href="../EcoShopper-Fix/product-detail-card-slider-master/product-detail.php"><i class='bx bx-cart-alt'></i></a>
-                <i class='bx bx-heart' ></i>
-                <div class='progress-bar' role='progressbar' aria-valuenow='75' aria-valuemin='0' aria-valuemax='100'></div>
-                <span class="category">Recycle</span>
-                <span class="discount">70%</span>
-            </div>
-            <!--product2-->
-            <div class="box">
-                <img src="product/sneaker-4.png" alt="">
-                <span>fresh item</span>
-                <h2>Black Jacket<br>Stock: 20</h2>
-                <h3 class="price">Rp 200.000</h3>
-                <i class='bx bx-cart-alt'></i>
-                <a href="../EcoShopper-Fix/product-detail-card-slider-master/product-detail.php"><i class='bx bx-heart' ></i></a>
-                <div class='progress-bar' role='progressbar' aria-valuenow='75' aria-valuemin='0' aria-valuemax='100'></div>
-                <span class="category">Recycle</span>
-                <span class="discount">70%</span>
-            </div>
-            <!--product3-->
-            <div class="box">
-                <img src="product/headphone-9.png" alt="">
-                <span>fresh item</span>
-                <h2>Black Jacket<br>Stock: 20</h2>
-                <h3 class="price">Rp 200.000</h3>
-                <a href="../EcoShopper-Fix/product-detail-card-slider-master/product-detail.php"><i class='bx bx-cart-alt'></i></a>
-                <i class='bx bx-heart' ></i>
-                <div class='progress-bar' role='progressbar' aria-valuenow='75' aria-valuemin='0' aria-valuemax='100'></div>
-                <span class="category">Recycle</span>
-                <span class="discount">70%</span>
-            </div>
-            <!--product4-->
-            <div class="box">
-                <img src="product/skincare-8-removebg-preview.png" alt="">
-                <span>fresh item</span>
-                <h2>Black Jacket<br>Stock: 20</h2>
-                <h3 class="price">Rp 200.000</h3>
-                <a href="../EcoShopper-Fix/product-detail-card-slider-master/product-detail.php"><i class='bx bx-cart-alt'></i></a>
-                <i class='bx bx-heart' ></i>
-                <div class='progress-bar' role='progressbar' aria-valuenow='75' aria-valuemin='0' aria-valuemax='100'></div>
-                <span class="category">Recycle</span>
-                <span class="discount">70%</span>
-            </div>
-            <!--product5-->
-            <div class="box">
-                <img src="product/black-8-removebg-preview.png" alt="">
-                <span>fresh item</span>
-                <h2>Black Jacket<br>Stock: 20</h2>
-                <h3 class="price">Rp 200.000</h3>
-                <a href="../EcoShopper-Fix/product-detail-card-slider-master/product-detail.php"><i class='bx bx-cart-alt'></i></a>
-                <i class='bx bx-heart' ></i>
-                <div class='progress-bar' role='progressbar' aria-valuenow='75' aria-valuemin='0' aria-valuemax='100'></div>
-                <span class="category">Recycle</span>
-                <span class="discount">70%</span>
-            </div>
-            <!--product6-->
-            <div class="box">
-                <img src="product/black-14-removebg-preview.png" alt="">
-                <span>fresh item</span>
-                <h2>Black Jacket<br>Stock: 20</h2>
-                <h3 class="price">Rp 200.000</h3>
-                <a href="../EcoShopper-Fix/product-detail-card-slider-master/product-detail.php"><i class='bx bx-cart-alt'></i></a>
-                <i class='bx bx-heart' ></i>
-                <div class='progress-bar' role='progressbar' aria-valuenow='75' aria-valuemin='0' aria-valuemax='100'></div>
-                <span class="category">Recycle</span>
-                <span class="discount">70%</span>
-            </div>
+            <?php
+
+            $category = 'fashion';
+            $material = isset($_GET['material']) ? $_GET['material'] : '';
+            $keberlanjutan = isset($_GET['keberlanjutan']) ? $_GET['keberlanjutan'] : '';
+            $gender = isset($_GET['gender']) ? $_GET['gender'] : '';
+            $price = isset($_GET['price']) ? $_GET['price'] : '';
+            $size = isset($_GET['size']) ? $_GET['size'] : '';
+            $type = isset($_GET['type']) ? $_GET['type'] : '';
+
+            // Build the query
+            $query = "SELECT * FROM products WHERE category='$category'";
+
+            if ($material) {
+                $query .= " AND material='$material'";
+            }
+            if ($keberlanjutan) {
+                $query .= " AND sustainability_impact='$keberlanjutan'";
+            }
+            if ($gender) {
+                $query .= " AND gender='$gender'";
+            }
+            if ($size) {
+                $query .= " AND FIND_IN_SET('$size', size)";
+            }
+            if ($type) {
+                $query .= " AND type='$type'";
+            }
+            if ($price) {
+                $query .= " ORDER BY price " . ($price == 'asc' ? 'ASC' : 'DESC');
+            }
+
+            $result = $db->query($query);
+
+            while ($row = $result->fetch_assoc()) {
+                echo "<div class='box'>";
+                echo "<img src='" . $row['image'] . "' alt='Product Image'>";
+                echo "<h2>" . $row['name'] . "<br>Stock: " . $row['stock'] . "</h2>";
+                echo "<h3 class='price'>Rp " . $row['price'] . "</h3>";
+                echo "<a href='..\EcoShopper-Fix\product-detail-card-slider-master\product-detail.php ?id=" . $row['id'] . "'><i class='bx bx-cart-alt'></i></a>";
+                echo "<i class='bx bx-heart'></i>";
+                echo "<div class='progress-bar' role='progressbar' aria-valuenow='75' aria-valuemin='0' aria-valuemax='100'></div>";
+                echo "<span class='category'>" . $row['material'] . "</span>";
+                echo "<span class='discount'>70%</span>";
+                echo "</div>";
+            }
+            ?>
         </div>
     </section>
     <!--about-->
@@ -288,7 +264,7 @@ function toggleDropdown() {
             <span>About Us</span>
             <p>Sebagai toko online yang berfokus pada produk-produk ramah lingkungan, Eco Shopper menyediakan berbagai macam produk yang ramah lingkungan</p>
             <p>dan juga kami bermitra dengan perusahaan-perusahaan yang memang dibidang pada sumberdaya berkelanjutan.</p>
-            <a href="../simple-blog-page-master/images/Tentangkami.php" class="btn">Tentang kami<i class='bx bxs-right-arrow-alt' ></i></a>
+            <a href="simple-blog-page-master/images/Tentangkami.php" class="btn">Tentang kami<i class='bx bxs-right-arrow-alt' ></i></a>
         </div>
     </section>
     <!--customer-->
@@ -361,11 +337,11 @@ function toggleDropdown() {
         </div>
         <div class="footer-box">
             <h3>kategori</h3>
-            <a href="/product-fashion.html">Fashion</a>
-            <a href="/product-aksesoris.html">Accessories</a>
-            <a href="/product-furniture.html">Furniture</a>
-            <a href="/product-skincare.html">Skin Care</a>
-            <a href="/product.electronic.html">Electronic</a>
+            <a href="product-fashion.php">Fashion</a>
+            <a href="product-aksesoris.php">Accessories</a>
+            <a href="/product-furniture.php">Furniture</a>
+            <a href="/product-skincare.php">Skin Care</a>
+            <a href="/product-elektronik.php">Electronic</a>
         </div>
         <div class="footer-box">
             <h3>FAQ!</h3>

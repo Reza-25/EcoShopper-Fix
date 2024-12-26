@@ -1,3 +1,9 @@
+<script>
+function goBack() {
+    window.history.back();
+}
+</script>
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -15,7 +21,7 @@
     <header class="fade-in">
       <nav class="navbar fade-in">
         <div class="container fade-in">
-          <a href="/Home.html" class="navbar-brand fade-in">Go Back</a>
+        <button class="navbar-brand fade-in" onclick="goBack()">Go Back</button>
         </div>
       </nav>
       <div class="banner fade-in">

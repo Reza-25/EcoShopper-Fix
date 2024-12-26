@@ -28,6 +28,11 @@ img{
     width: 100%;
     transition: all 0.5s ease;
 }
+
+a .back{
+    position: relative;
+    left: 100px;
+}
 .img-showcase img{
     width: 100%;
     height: auto;
