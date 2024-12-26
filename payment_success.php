@@ -59,7 +59,9 @@ $items = $items_result->fetch_all(MYSQLI_ASSOC);
 </head>
 <body>
     <section class="payment-success">
+        <a href="Home.php">Kembali ke Halaman Utama</a>
         <h2>Pembayaran Berhasil</h2>
+        <p>Terima kasih atas pembelian Anda.</p>
         <h3>Struk Transaksi</h3>
         <p>Transaction ID: <?php echo $transaction['id']; ?></p>
         <p>Username: <?php echo $transaction['username']; ?></p>
