@@ -151,19 +151,6 @@ header{
     display: none;
 }
 
-header .cart {
-    position: absolute;
-    width: 60px;
-    height: 30px;
-    right: 15%;
-    border: none;
-    border-radius: 20px;
-    background: var(--green-color);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
 
 header .cart .bx {
     font-size: 20px;
@@ -185,11 +172,6 @@ header .cart .count {
     height: 20px;
     display: flex;
     align-items: center;
-}
-
-header .cart:hover{
-    background: var(--light-green-color);
-    transition: 0.5s;
 }
 
 

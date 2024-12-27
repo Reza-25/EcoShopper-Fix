@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["login"])) {
             // Login berhasil
             $_SESSION["user_id"] = $user["id"];
             $_SESSION["username"] = $user["username"];
-            header("Location: home.php");
+            header("Location:./Main/Home.php");
             exit();
         } else {
             $loginMessage = "Password salah.";

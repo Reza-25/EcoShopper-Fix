@@ -41,16 +41,16 @@ $electronic_count = countItems('electronic', $db);
         <div class="bx bx-menu" id="menu-icon"></div>
         <!--nav list-->
         <ul class="navbar">
-            <li><a href="home.php" >Home</a></li>
-            <li><a href="home.php">Kategori</a></li>
+            <li><a href="./Main/Home.php" >Home</a></li>
+            <li><a href="#categories">Kategori</a></li>
             <li><a href="product-fashion.php" class="home-active">Produk</a></li>
             <li><a href="simple-blog-page-master/images/Tentangkami.php">Tentang Kami</a></li>
-            <li><a href="home.php">Customer</a></li>
+            <li><a href="./Main/Home.php">Customer</a></li>
         </ul>
 
         <!--cart-->
         <div class="cart">
-            <a href="cart.php"><i class='bx bx-cart'><span class="count">0</span></i></a>
+            <a href="../cart.php"><i class='bx bx-cart'><span class="count"><?php echo $total_cart_items; ?></span></i></a>
         </div>
 
         <!--profil-->

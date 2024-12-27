@@ -1,6 +1,25 @@
 <?php
 include '../config.php';
 
+
+$cart_items = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
+$checkout_items = isset($_SESSION['checkout']) ? $_SESSION['checkout'] : [];
+$total_price = 0;
+
+// Function to count total items in the cart
+function countCartItems($cart_items) {
+    $total_items = 0;
+    foreach ($cart_items as $item) {
+        $total_items += $item['quantity'];
+    }
+    return $total_items;
+}
+
+$total_cart_items = countCartItems($cart_items);
+
+
+$total_cart_items = countCartItems($cart_items);
+
 $product_id = $_GET['id'];
 $stmt = $db->prepare("SELECT * FROM products WHERE id = ?");
 $stmt->bind_param("i", $product_id);
@@ -47,16 +66,16 @@ $previous_page = isset($_SESSION['previous_page']) ? $_SESSION['previous_page'] 
         <div class="bx bx-menu" id="menu-icon"></div>
         <!--nav list-->
         <ul class="navbar">
-            <li><a href="/Home.php">Home</a></li>
-            <li><a href="/product.">Kategori</a></li>
+            <li><a href="../Main/Home.php">Home</a></li>
+            <li><a href="/product-fashion.php">Kategori</a></li>
             <li><a href="../<?php echo $previous_page; ?>">Produk</a></li>
-            <li><a href="home.html#about">Tentang Kami</a></li>
-            <li><a href="home.html#customer">Customer</a></li>
+            <li><a href="/simple-blog-page-master/images/Tentangkami.php">Tentang Kami</a></li>
+            <li><a href="/Main/Home.php">Customer</a></li>
         </ul>
 
         <!--cart-->
         <div class="cart">
-            <a href="../cart.php"><i class='bx bx-cart'><span class="count">0</span></i></a>
+            <a href="../cart.php"><i class='bx bx-cart'><span class="count"><?php echo $total_cart_items; ?></span></i></a>
         </div>
 
         <!--profil-->

@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'config.php';
+include '../config.php';
 
 // Function to count items in a category
 function countItems($category, $db) {
@@ -43,7 +43,7 @@ $total_cart_items = countCartItems($cart_items);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EcoShopper</title>
-    <link rel="stylesheet" href="desaincss/style.css">
+    <link rel="stylesheet" href="../desaincss/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <!-- Link Swiper's CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
@@ -65,7 +65,7 @@ $total_cart_items = countCartItems($cart_items);
 
         <!--cart-->
         <div class="cart">
-            <a href="cart.php"><i class='bx bx-cart'><span class="count">0</span></i></a>
+            <a href="../cart.php"><i class='bx bx-cart'><span class="count"><?php echo $total_cart_items; ?></span></i></a>
         </div>
 
         <!--profil-->
@@ -78,21 +78,21 @@ $total_cart_items = countCartItems($cart_items);
         $stmt->execute();
         $result = $stmt->get_result();
         $user = $result->fetch_assoc();
-        $profilePicture = $user["profile_picture"] ? $user["profile_picture"] : 'default-profile.png';
+        $profilePicture = $user["profile_picture"] ? '../' . $user["profile_picture"] : 'default-profile.png';
     ?>
         <img src="<?php echo $profilePicture; ?>" alt="Profile Picture">
         <span><?php echo $_SESSION["username"]; ?></span>
         <i class='bx bx-caret-down' onclick="toggleDropdown()"></i>
     <?php
     } else {
-        echo '<a href="login.php">Sign In</a>';
+        echo '<a href="../login.php">Sign In</a>';
     }
     ?>
 </div>
 
 <div class="profile-dropdown" id="profile-dropdown" style="display: none;">
     <?php if (isset($_SESSION["user_id"])): ?>
-        <a href="logout.php">Log Out</a>
+        <a href="../logout.php">Log Out</a>
     <?php else: ?>
         <a href="login.php">Sign In</a>
     <?php endif; ?>
@@ -119,9 +119,9 @@ function toggleDropdown() {
                 <div class="home-text">
                     <span>Fashion</span>
                     <h1>varian baru<br>dengan diskon gede<br></h1>
-                    <a href="product-fashion.php" class="btn">Belanja<i class='bx bxs-right-arrow-alt' ></i></a>
+                    <a href="../product-fashion.php" class="btn">Belanja<i class='bx bxs-right-arrow-alt' ></i></a>
                 </div>
-                <img class="shirt" src="product/black-9-removebg-preview.png" alt="">
+                <img class="shirt" src="../product/black-9-removebg-preview.png" alt="">
             
             </div>
             <!--slide2-->
@@ -129,9 +129,9 @@ function toggleDropdown() {
                 <div class="home-text">
                     <span>Electronic</span>
                     <h1>Headphone baru<br> dengan warna <br>baru</h1>
-                    <a href="product-fashion.php" class="btn">Belanja<i class='bx bxs-right-arrow-alt' ></i></a>
+                    <a href="../product-elektronik.php" class="btn">Belanja<i class='bx bxs-right-arrow-alt' ></i></a>
                 </div>
-                <img id="headphone-image" src="product/headphone-9.png" alt="">
+                <img id="headphone-image" src="../product/headphone-9.png" alt="">
             
             </div>
             <!--slide3-->
@@ -139,9 +139,9 @@ function toggleDropdown() {
                 <div class="home-text">
                     <span>Accessoris</span>
                     <h1>Tas Mewah<br> Kini dengan <br>desain baru</h1>
-                    <a href="product-fashion.php" class="btn">Belanja<i class='bx bxs-right-arrow-alt' ></i></a>
+                    <a href="../product-aksesoris.php" class="btn">Belanja<i class='bx bxs-right-arrow-alt' ></i></a>
                 </div>
-                <img id="tas-coklat" src="product/brown-5.png" alt="">
+                <img id="tas-coklat" src="../product/brown-5.png" alt="">
             
             </div>
         
@@ -155,47 +155,47 @@ function toggleDropdown() {
     <section class="categories" id="categories">
         <div class="heading">
             <h1>Jelajahi Produk Kami<br><span>Kategori</span></h1>
-            <a href="product-fashion.php" class="btn">Belanja<i class='bx bxs-right-arrow-alt' ></i></a>
+            <a href="../product-fashion.php" class="btn">Belanja<i class='bx bxs-right-arrow-alt' ></i></a>
         </div>
         <!--container content-->
         <div class="categories-container">
             <!--box-->
             <div class="box box1">
-                <img src="img2/dark-blue-2-removebg-preview.png" alt="">
+                <img src="../img2/dark-blue-2-removebg-preview.png" alt="">
                 <h2>Fashion</h2>
                 <span><?php echo $fashion_count; ?> items</span>
-                    <a href="product-fashion.php"><i class='bx bxs-right-arrow-alt' ></i></a>
+                    <a href="../product-fashion.php"><i class='bx bxs-right-arrow-alt' ></i></a>
 
             </div>
              <!--box2-->
              <div class="box box2">
-                <img src="img2/light-green-5-removebg-preview.png" alt="">
+                <img src="../img2/light-green-5-removebg-preview.png" alt="">
                 <h2>Acessories</h2>
                 <span><?php echo $aksesoris_count; ?> items</span>
-                    <a href="product-aksesoris.php"><i class='bx bxs-right-arrow-alt' ></i></a>
+                    <a href="../product-aksesoris.php"><i class='bx bxs-right-arrow-alt' ></i></a>
 
             </div>
              <!--box3-->
              <div class="box box3">
-                <img src="img2/furniture_cate1-removebg-preview.png" alt="">
+                <img src="../img2/furniture_cate1-removebg-preview.png" alt="">
                 <h2>Furniture</h2>
                 <span><?php echo $furniture_count; ?> items</span>
-                    <a href="product-furniture.php"><i class='bx bxs-right-arrow-alt' ></i></a>
+                    <a href="../product-furniture.php"><i class='bx bxs-right-arrow-alt' ></i></a>
 
             </div>
              <!--box4-->
              <div class="box box4">
-                <img src="img2/—Pngtree—mock up cosmetic products for_15619191.png" alt="">
+                <img src="../img2/—Pngtree—mock up cosmetic products for_15619191.png" alt="">
                 <h2>Skin care</h2>
                 <span><?php echo $skincare_count; ?> items</span>
-                    <a href="product-skincare.php"><i class='bx bxs-right-arrow-alt' ></i></a>
+                    <a href="../product-skincare.php"><i class='bx bxs-right-arrow-alt' ></i></a>
             </div>
             <!--box5-->
             <div class="box box5">
-                <img src="img2/black-16.png" alt="">
+                <img src="../img2/black-16.png" alt="">
                 <h2>Electronic</h2>
                 <span><?php echo $electronic_count; ?> items</span>
-                    <a href="product-electronic.php"><i class='bx bxs-right-arrow-alt' ></i></a>
+                    <a href="../product-electronic.php"><i class='bx bxs-right-arrow-alt' ></i></a>
             </div>
         </div>
     </section>
@@ -203,7 +203,7 @@ function toggleDropdown() {
     <section class="products" id="products">
         <div class="heading">
             <h1>Our Popular <br><span>Products</span></h1>
-            <a href="product-fashion.php" class="btn">Belanja<i class='bx bxs-right-arrow-alt' ></i></a>
+            <a href="../product-fashion.php" class="btn">Belanja<i class='bx bxs-right-arrow-alt' ></i></a>
         </div>
 
         <!--product content-->
@@ -244,10 +244,10 @@ function toggleDropdown() {
 
             while ($row = $result->fetch_assoc()) {
                 echo "<div class='box'>";
-                echo "<img src='" . $row['image'] . "' alt='Product Image'>";
+                echo "<img src='../" . $row['image'] . "' alt='Product Image'>";
                 echo "<h2>" . $row['name'] . "<br>Stock: " . $row['stock'] . "</h2>";
                 echo "<h3 class='price'>Rp " . $row['price'] . "</h3>";
-                echo "<a href='..\EcoShopper-Fix\product-detail-card-slider-master\product-detail.php?id=" . $row['id'] . "'><i class='bx bx-cart-alt'></i></a>";
+                echo "<a href='../product-detail-card-slider-master/product-detail.php?id=" . $row['id'] . "'><i class='bx bx-cart-alt'></i></a>";
                 echo "<i class='bx bx-heart'></i>";
                 echo "<div class='progress-bar' role='progressbar' aria-valuenow='75' aria-valuemin='0' aria-valuemax='100'></div>";
                 echo "<span class='category'>" . $row['material'] . "</span>";
@@ -259,12 +259,12 @@ function toggleDropdown() {
     </section>
     <!--about-->
     <section class="about" id="about">
-        <img src="label/—Pngtree—eco friendly icon graphic_8076645.png" alt="">
+        <img src="../label/—Pngtree—eco friendly icon graphic_8076645.png" alt="">
         <div class="about-text">
             <span>About Us</span>
             <p>Sebagai toko online yang berfokus pada produk-produk ramah lingkungan, Eco Shopper menyediakan berbagai macam produk yang ramah lingkungan</p>
             <p>dan juga kami bermitra dengan perusahaan-perusahaan yang memang dibidang pada sumberdaya berkelanjutan.</p>
-            <a href="simple-blog-page-master/images/Tentangkami.php" class="btn">Tentang kami<i class='bx bxs-right-arrow-alt' ></i></a>
+            <a href="../simple-blog-page-master/images/Tentangkami.php" class="btn">Tentang kami<i class='bx bxs-right-arrow-alt' ></i></a>
         </div>
     </section>
     <!--customer-->
@@ -284,7 +284,7 @@ function toggleDropdown() {
                 </div>
                 <p>Aplikasi ini Sangat Inspiratif, tidak hanya menjual barang saja namun memikirkan bagaimana barang tersebut berpengaruh pada lingkungan kita!, terlebih lagi barang yang di jualnya sangat bagus</p>
                 <div class="review-profile">
-                    <img src="images/collection-29.jpg" alt="">
+                    <img src="../images/collection-29.jpg" alt="">
                     <h3>angelina smith</h3>
                 </div>
             </div>
@@ -301,7 +301,7 @@ function toggleDropdown() {
                 </div>
                 <p>Website ini sangat bagus sekali untuk bagi saya sebagai orang yang suka di bidang fashion, selain barang yang dijual nya sangat bagus dan modis, aplikasi ini juga menawarkan harga yang terjangkau.</p>
                 <div class="review-profile">
-                    <img src="images/collection-72.jpg" alt="">
+                    <img src="../images/collection-72.jpg" alt="">
                     <h3>James Leon</h3>
                 </div>
             </div>
@@ -317,7 +317,7 @@ function toggleDropdown() {
                 </div>
                 <p>Saya sebagai aktivis pada bidang Lingkungan alam, setelah melihat aplikasi ini hati saya terharu karna akhirnya bisa melihat sebuah aplikasi yang tidak hanya menjual barang bagus, namun tetap memperhatikan dampaknya bagi lingkungan kami.</p>
                 <div class="review-profile">
-                    <img src="images/glasses-1.jpg" alt="">
+                    <img src="../images/glasses-1.jpg" alt="">
                     <h3>Sonya Heny</h3>
                 </div>
             </div>
@@ -359,7 +359,8 @@ function toggleDropdown() {
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <!--link to js-->
-    <script src="js/main.js"></script>
+    <script src="../js/main.js"> </script>
+
 
     
 </body>
