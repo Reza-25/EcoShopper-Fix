@@ -46,7 +46,7 @@
                 </div>
                 <div class="form-group">
                     <label>
-                        <input type="radio" name="category" value="skin_care" required onclick="redirectToCategoryPage()">
+                        <input type="radio" name="category" value="skincare" required onclick="redirectToCategoryPage()">
                         Skin Care
                     </label>
                 </div>

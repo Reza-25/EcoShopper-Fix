@@ -33,5 +33,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt->close();
 
     header("Location: upload-$category.php");
+
+    print_r($_POST);
+    print_r($_FILES);
 }
 ?>

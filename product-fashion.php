@@ -261,7 +261,7 @@ $electronic_count = countItems('electronic', $db);
                 echo "<img src='" . $row['image'] . "' alt='Product Image'>";
                 echo "<h2>" . $row['name'] . "<br>Stock: " . $row['stock'] . "</h2>";
                 echo "<h3 class='price'>Rp " . $row['price'] . "</h3>";
-                echo "<a href='..\EcoShopper-Fix\product-detail-card-slider-master\product-detail.php?id=" . $row['id'] . "'><i class='bx bx-cart-alt'></i></a>";
+                echo "<a href='./product-detail-card-slider-master/product-detail.php?id=" . $row['id'] . "'><i class='bx bx-cart-alt'></i></a>";
                 echo "<i class='bx bx-heart'></i>";
                 echo "<div class='progress-bar' role='progressbar' aria-valuenow='75' aria-valuemin='0' aria-valuemax='100'></div>";
                 echo "<span class='category'>" . $row['material'] . "</span>";
